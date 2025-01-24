@@ -7,7 +7,7 @@ const Home = () => {
     useEffect(() => {
         getHighlightedBlogs()
         getBlogs()
-    }, [])
+    }, [getHighlightedBlogs, getBlogs])
 
     useEffect(() => {
       console.log("highlightedBlogs", highlightedBlogs)

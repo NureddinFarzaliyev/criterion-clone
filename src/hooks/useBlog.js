@@ -1,7 +1,7 @@
 import { useDispatch, useSelector } from "react-redux"
 import { fetchHighlightedBlogs } from "../features/blog/highlightedBlogs"
 import { fetchBlogs } from "../features/blog/blog"
-import { useEffect, useState } from "react"
+import { useEffect, useState, useCallback } from "react"
 
 const useBlog = () => {
     const dispatch = useDispatch()
@@ -19,21 +19,21 @@ const useBlog = () => {
 
     useEffect(() => {
         setIsLoading(isHighlightedLoading || isBlogsLoading)
-    }, [isHighlightedLoading])
+    }, [isHighlightedLoading, isBlogsLoading])
 
     useEffect(() => {
         if (isHighlightedError) {
             setError(isHighlightedError || isBlogsError)
         }
-    }, [isHighlightedError])
+    }, [isHighlightedError, isBlogsError])
 
-    const getHighlightedBlogs = async () => {
+    const getHighlightedBlogs = useCallback(async () => {
         dispatch(fetchHighlightedBlogs())
-    }
+    }, [dispatch])
 
-    const getBlogs = async () => {
+    const getBlogs = useCallback(async () => {
         dispatch(fetchBlogs())
-    }
+    }, [dispatch])
 
     return {
         getHighlightedBlogs,
