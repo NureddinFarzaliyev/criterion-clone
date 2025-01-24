@@ -1,35 +1,47 @@
-import { useState } from "react"
-import supabase from "../utils/supabase"
+import { useDispatch, useSelector } from "react-redux"
+import { fetchHighlightedBlogs } from "../features/blog/highlightedBlogs"
+import { fetchBlogs } from "../features/blog/blog"
+import { useEffect, useState } from "react"
 
 const useBlog = () => {
+    const dispatch = useDispatch()
+
     const [isLoading, setIsLoading] = useState(false)
     const [error, setError] = useState(null)
 
-    const [highlightedBlogs, setHighlightedBlogs] = useState([])
+    const highlightedBlogs = useSelector(state => state.highlightedBlogs.blogs)
+    const isHighlightedLoading = useSelector(state => state.highlightedBlogs.isLoading)
+    const isHighlightedError = useSelector(state => state.highlightedBlogs.error)
+    
+    const blogs = useSelector(state => state.blog.blogs)
+    const isBlogsLoading = useSelector(state => state.blog.isLoading)
+    const isBlogsError = useSelector(state => state.blog.error)
 
-    const fetchHighlightedBlogs = async () => {
-        setIsLoading(true)
+    useEffect(() => {
+        setIsLoading(isHighlightedLoading || isBlogsLoading)
+    }, [isHighlightedLoading])
 
-        const { data, error } = await supabase
-            .from('blog')
-            .select('*')
-            .eq('isHighlighted', true)
-        if (error) {
-            console.error(error)
-            setError(error)
-            setIsLoading(false)
-            return
+    useEffect(() => {
+        if (isHighlightedError) {
+            setError(isHighlightedError || isBlogsError)
         }
+    }, [isHighlightedError])
 
-        setHighlightedBlogs(data)
-        setIsLoading(false)
+    const getHighlightedBlogs = async () => {
+        dispatch(fetchHighlightedBlogs())
+    }
+
+    const getBlogs = async () => {
+        dispatch(fetchBlogs())
     }
 
     return {
-        isLoading,
-        error,
+        getHighlightedBlogs,
         highlightedBlogs,
-        fetchHighlightedBlogs
+        getBlogs,
+        blogs,
+        isLoading,
+        error
     }
 }
 

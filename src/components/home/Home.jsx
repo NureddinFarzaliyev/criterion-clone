@@ -2,19 +2,25 @@ import React, { useEffect } from 'react'
 import useBlog from '../../hooks/useBlog'
 
 const Home = () => {
-    const {fetchHighlightedBlogs, highlightedBlogs, error } = useBlog()
+    const {highlightedBlogs, getHighlightedBlogs, isLoading, error, getBlogs, blogs} = useBlog()
 
     useEffect(() => {
-        fetchHighlightedBlogs()
+        getHighlightedBlogs()
+        getBlogs()
     }, [])
 
     useEffect(() => {
-        if(error) console.error(error)
-    }, [error])
+      console.log("highlightedBlogs", highlightedBlogs)
+    }, [highlightedBlogs])
+
+    useEffect(() => {
+      console.log("blogs", blogs)
+    }, [blogs])
+
 
   return (
     <div>
-        home
+      {isLoading ? <p>Loading...</p> : <p>Home</p>}
     </div>
   )
 }
