@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react'
 import useBlog from '../../hooks/useBlog'
+import { errorToast } from '../../utils/toast'
 
 const Home = () => {
     const {highlightedBlogs, getHighlightedBlogs, isLoading, error, getBlogs, blogs} = useBlog()
@@ -17,6 +18,9 @@ const Home = () => {
       console.log("blogs", blogs)
     }, [blogs])
 
+    useEffect(() => {
+      if (error) errorToast(error)
+    }, [error])
 
   return (
     <div>

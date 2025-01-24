@@ -22,7 +22,7 @@ const useBlog = () => {
     }, [isHighlightedLoading, isBlogsLoading])
 
     useEffect(() => {
-        if (isHighlightedError) {
+        if (isHighlightedError || isBlogsError) {
             setError(isHighlightedError || isBlogsError)
         }
     }, [isHighlightedError, isBlogsError])
