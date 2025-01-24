@@ -1,31 +1,23 @@
 import React, { useEffect } from 'react'
 import useBlog from '../../hooks/useBlog'
 import { errorToast } from '../../utils/toast'
+import HomeBlog from './HomeBlog'
 
 const Home = () => {
-    const {highlightedBlogs, getHighlightedBlogs, isLoading, error, getBlogs, blogs} = useBlog()
+    const {highlightedBlogs, getHighlightedBlogs, isLoading, error} = useBlog()
 
     useEffect(() => {
         getHighlightedBlogs()
-        getBlogs()
-    }, [getHighlightedBlogs, getBlogs])
-
-    useEffect(() => {
-      console.log("highlightedBlogs", highlightedBlogs)
-    }, [highlightedBlogs])
-
-    useEffect(() => {
-      console.log("blogs", blogs)
-    }, [blogs])
+    }, [getHighlightedBlogs])
 
     useEffect(() => {
       if (error) errorToast(error)
     }, [error])
 
   return (
-    <div>
-      {isLoading ? <p>Loading...</p> : <p>Home</p>}
-    </div>
+    <main className='snap-y snap-mandatory h-dvh overflow-y-scroll'>
+      {highlightedBlogs?.map((blog, i) => <HomeBlog {...blog} key={i} />) }
+    </main>
   )
 }
 

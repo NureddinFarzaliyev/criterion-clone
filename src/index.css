@@ -17,4 +17,6 @@
 @theme {
     --font-text: 'Mercury';
     --font-display: 'Gotham';
+    --bg-gray: #252525;
+    --bg-white: #ffffff;
 }
