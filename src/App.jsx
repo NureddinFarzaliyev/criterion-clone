@@ -1,11 +1,13 @@
 import React from 'react'
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
-import Home from './components/home/Home'
 import ToastConfig from './components/ui/ToastConfig'
+import Home from './components/pages/home/Home'
+import Nav from './components/layout/nav/ Nav'
 
 const App = () => {
   return (
     <BrowserRouter>
+      <Nav />
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="*" element={<h1>Not Found</h1>} />
