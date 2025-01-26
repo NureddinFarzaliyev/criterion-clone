@@ -10,7 +10,6 @@ const SearchIcon = ({color}) => {
 
 
   const handleSubmit = (e) => {
-    console.log('submit')
     e.preventDefault()
     if(inputRef.current.value === '') return
     window.location.href = `/search?q=${inputRef.current.value.replace(/\s/g, '+')}`

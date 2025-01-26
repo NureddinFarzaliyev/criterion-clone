@@ -27,3 +27,7 @@
     --home-seperator-color: rgba(44,44,44, .2);
     --home-seperator-width: 10%;
 }
+
+.active {
+    color: var(--color-gold);
+}
