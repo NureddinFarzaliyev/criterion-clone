@@ -6,7 +6,7 @@ import { motion } from 'motion/react'
 
 const BlogAndStore = () => {
   return (
-    <section className="home-section h-dvh bg-light snap-start flex items-center justify-center gap-5 flex-col">
+    <section className="home-section h-dvh bg-light dark:bg-gray snap-start flex items-center justify-center gap-5 flex-col">
         <Link to={`/shop`} className='flex items-center justify-center w-full' >
             <motion.div transition={{duration: 0.3, ease: 'easeOut'}} whileHover={{'--home-seperator-color': '#B4841E', '--home-seperator-width': '75%'}} 
             className='h-64 lg:h-96 shadow-lg w-[70%] md:w-[50%] bg-white flex flex-col justify-between lg:grid grid-cols-2'>
