@@ -19,9 +19,9 @@ const SearchIcon = ({color}) => {
     <>
     <AnimatePresence>
       { isOpen && <SidePanel onClose={() => {setIsOpen(false)}}> 
-        <div className='text-gray dark:text-white text-sm font-display font-bold'>
+        <div className='text-white text-sm font-display font-bold'>
           <h1 className=''>SEARCH</h1>
-          <form onSubmit={handleSubmit} className='bg-gray/5 dark:bg-white/5 flex items-center gap-1 px-5 mt-5'>
+          <form onSubmit={handleSubmit} className='bg-black/20 dark:bg-white/5 flex items-center gap-1 px-5 mt-5'>
             <IoIosSearch className='text-3xl' />
             <input ref={inputRef} type="text" placeholder='SEARCH' className='p-5 w-[95%] text-2xl outline-none font-bold'/>
             <button type='submit' className='text-4xl opacity-20 cursor-pointer transition hover:opacity-100'><GoChevronRight /></button>

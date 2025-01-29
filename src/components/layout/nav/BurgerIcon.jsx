@@ -11,6 +11,9 @@ const BurgerIcon = ({color}) => {
     'Home': '/',
     'Shop the Collection': '/shop',
     'Read Our Blog': '/blog',
+    'About Us': '/about',
+    'Contact Us': '/contact',
+    'FAQ': '/faq',
     'Login': '/login',
     'Register': '/register',
     'Your Account': '/account',
@@ -26,10 +29,10 @@ const BurgerIcon = ({color}) => {
       <AnimatePresence>
       {isOpen && (
         <SidePanel onClose={() => {setIsOpen(false)}} >
-          <ul className='text-gray dark:text-white'>
+          <ul className='text-white'>
             {Object.keys(navLinks).map((text, i) => (
               <NavLink to={navLinks[text]} key={i}>
-                <motion.li initial={{x:"110%"}} animate={{x:"0%"}} transition={{duration: 0.25, delay: i*0.075, ease: 'easeIn'}} className='text-3xl hover:text-gold transition duration-300 my-4 lg:ml-4' 
+                <motion.li initial={{x:"110%"}} animate={{x:"0%"}} transition={{duration: 0.25, delay: i*0.075, ease: 'easeIn'}} className='text-2xl md:text-3xl hover:text-gold transition duration-300 my-3 lg:ml-4' 
                     onClick={() => {setIsOpen(false)}}>
                   {text}
                 </motion.li>
