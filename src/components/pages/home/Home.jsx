@@ -6,6 +6,7 @@ import Dots from './Dots'
 import StoreLink from './StoreLink'
 import BlogAndStore from './BlogAndStore'
 import HomeCC40 from './HomeCC40'
+import HighlightedProducts from './HighlightedProducts'
 
 const Home = () => {
   const {highlightedBlogs, getHighlightedBlogs, isLoading, error} = useBlog()
@@ -25,6 +26,7 @@ const Home = () => {
       <StoreLink/>
       {highlightedBlogs?.map((blog, i) => <HomeBlog {...blog} key={i} />) }
       <HomeCC40 />
+      <HighlightedProducts />
       <BlogAndStore />
       <Dots scrollPosition={scrollPosition} />
     </main>
