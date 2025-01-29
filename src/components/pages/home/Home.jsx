@@ -5,6 +5,7 @@ import HomeBlog from './HomeBlog'
 import Dots from './Dots'
 import StoreLink from './StoreLink'
 import BlogAndStore from './BlogAndStore'
+import HomeCC40 from './HomeCC40'
 
 const Home = () => {
   const {highlightedBlogs, getHighlightedBlogs, isLoading, error} = useBlog()
@@ -23,6 +24,7 @@ const Home = () => {
     <main className='snap-y snap-mandatory h-dvh overflow-y-scroll' onScroll={(e) => {setScrollPosition(e.target.scrollTop)}}>
       <StoreLink/>
       {highlightedBlogs?.map((blog, i) => <HomeBlog {...blog} key={i} />) }
+      <HomeCC40 />
       <BlogAndStore />
       <Dots scrollPosition={scrollPosition} />
     </main>

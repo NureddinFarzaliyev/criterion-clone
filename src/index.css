@@ -24,10 +24,28 @@
     --color-light: #F6F6F6;
     --color-gold: #B4841E;
 
+    /* Home Seperator Animation */
     --home-seperator-color: rgba(44,44,44, .2);
     --home-seperator-width: 10%;
 }
 
 .active {
     color: var(--color-gold);
+}
+
+.cc40-img:hover ~ .cc40-span-left {
+    opacity: 1;
+    scale: 1;
+    left: 17.5%;
+}
+
+.cc40-img:hover ~ .cc40-span-right {
+    opacity: 1;
+    scale: 1;
+    right: 17.5%;
+}
+
+.cc40-img:hover ~  .cc40-span-bottom {
+    bottom: 30px;
+    opacity: 1;
 }
