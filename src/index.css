@@ -24,6 +24,7 @@
     --color-white: #ffffff;
     --color-light: #F6F6F6;
     --color-gold: #B4841E;
+    --color-footer-black: rgba(0,0,0,.9);
 
     /* Home Seperator Animation */
     --home-seperator-color: rgba(44,44,44, .2);

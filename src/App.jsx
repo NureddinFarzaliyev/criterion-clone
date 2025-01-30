@@ -4,6 +4,7 @@ import ToastConfig from './components/ui/ToastConfig'
 import Home from './components/pages/home/Home'
 import Nav from './components/layout/nav/ Nav'
 import Footer from './components/layout/footer/Footer'
+import About from './components/pages/about/About'
 
 const App = () => {
 
@@ -12,6 +13,7 @@ const App = () => {
       <Nav />
       <Routes>
         <Route path="/" element={<Home />} />
+        <Route path="/about" element={<About />} />
         <Route path="*" element={<h1>Not Found</h1>} />
       </Routes>
       {window.location.pathname !== '/' && <Footer />}
