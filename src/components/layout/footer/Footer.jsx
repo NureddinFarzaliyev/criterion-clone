@@ -58,7 +58,7 @@ const Footer = () => {
                     </Link>
                 ))}
                 <a href="https://www.janusfilms.com/" target='_blank'>
-                    <img className='h-8 lg:h-15 mt-5 lg:mt-20 w-min bg-gray dark:bg-transparent p-1 rounded-md' src="https://www.criterion.com/assets/img/svg/logo_janusfilms_white.svg" alt="Janus Films" />
+                    <img className='h-8 lg:h-15 mt-5 lg:mt-20 w-min bg-gray dark:bg-transparent p-1 px-2 rounded-md' src="https://www.criterion.com/assets/img/svg/logo_janusfilms_white.svg" alt="Janus Films" />
                 </a>
             </div>
         </div>
