@@ -7,6 +7,7 @@ import StoreLink from './StoreLink'
 import BlogAndStore from './BlogAndStore'
 import HomeCC40 from './HomeCC40'
 import HighlightedProducts from './HighlightedProducts'
+import Footer from '../../layout/footer/Footer'
 
 const Home = () => {
   const {highlightedBlogs, getHighlightedBlogs, isLoading, error} = useBlog()
@@ -28,6 +29,7 @@ const Home = () => {
       <HomeCC40 />
       <HighlightedProducts />
       <BlogAndStore />
+      <Footer />
       <Dots scrollPosition={scrollPosition} />
     </main>
   )
