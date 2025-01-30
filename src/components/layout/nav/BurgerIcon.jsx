@@ -4,7 +4,7 @@ import { AnimatePresence } from 'motion/react'
 import { NavLink } from 'react-router-dom'
 import { motion } from 'motion/react'
 
-const BurgerIcon = ({color}) => {
+const BurgerIcon = () => {
   const [isOpen, setIsOpen] = useState(false)
 
   const navLinks = {
@@ -24,7 +24,7 @@ const BurgerIcon = ({color}) => {
   return (
     <>
       <div className='h-5 w-5 cursor-pointer' onClick={() => {setIsOpen(true)}}>
-        <svg fill={color} xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M0 11h24v2H0zM0 3h24v2H0zM0 19h24v2H0z"></path></svg>
+        <svg className='dark:fill-white fill-gray' xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M0 11h24v2H0zM0 3h24v2H0zM0 19h24v2H0z"></path></svg>
       </div>
       <AnimatePresence>
       {isOpen && (
