@@ -57,8 +57,8 @@ const HighlightedProducts = () => {
 
   return (
     <section className='h-dvh snap-start relative home-section bg-light dark:bg-gray flex flex-col items-center justify-center gap-5'>
-        <h1 className='font-text font-bold text-5xl dark:text-white text-center px-10'>Highlighted Movies</h1>
-        <p className='dark:text-white font-text mb-5 2xl:mb-20 text-lg text-center px-10'>The most influential and classical movies chosen by professional critics</p>
+        <h1 className='font-text font-bold text-3xl md:text-5xl dark:text-white text-center px-10'>Highlighted Movies</h1>
+        <p className='dark:text-white font-text mb-2 md:mb-5 2xl:mb-20 text-sm md:text-lg text-center px-10'>The most influential and classical movies chosen by professional critics</p>
         <div className='hidden 2xl:flex gap-4'>
             {tempData.map((movie, i) => (
                 <Link to={`/movie/${movie.id}`} key={i}>
@@ -70,8 +70,8 @@ const HighlightedProducts = () => {
                         <div className='flex flex-col p-5 font-text justify-around'>
                             <div>
                                 <h2 className='text-4xl font-bold mb-5 w-[300px]'>{movie.title}</h2>
-                                <p className='w-[300px]'>{movie.director}</p>
-                                <p className='w-[300px]'>{movie.year} - {movie.country}</p>
+                                <p className='w-[300px] md:text-xl'>{movie.director}</p>
+                                <p className='w-[300px] md:text-lg'>{movie.year} - {movie.country}</p>
                             </div>
                             <WhiteBtn textContent={"Learn More"} />
                         </div>

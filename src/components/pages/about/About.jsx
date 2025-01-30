@@ -8,8 +8,8 @@ const About = () => {
     <GeneralSection>
       <div className='flex items-center justify-center mt-10 flex-col'>
         <div className='text-center font-display'>
-          <p className='opacity-20 text-sm'>THE CRITERION COLLECTION</p>
-          <h1 className='mt-5 text-5xl font-extrabold'>OUR MISSION</h1>
+          <p className='opacity-20 text-xs md:text-sm'>THE CRITERION COLLECTION</p>
+          <h1 className='mt-5 text-3xl md:text-5xl font-extrabold'>OUR MISSION</h1>
         </div>
 
         <div className='px-4'>
