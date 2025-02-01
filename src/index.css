@@ -51,3 +51,21 @@
     bottom: 30px;
     opacity: 1;
 }
+
+.spin {
+    animation: spin 2.5s linear infinite;
+}
+
+div.swiper-button-next, div.swiper-button-prev {
+    color: var(--color-white);
+    transition: all .4s;
+    opacity: 0.2;
+    &:hover{
+        color: var(--color-gold);
+        opacity: 1;
+    }
+}
+
+.swiper {
+    margin: 0 !important;
+}

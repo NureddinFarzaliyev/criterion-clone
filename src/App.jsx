@@ -9,6 +9,7 @@ import About from './components/pages/about/About'
 import Contact from './components/pages/contact/Contact'
 import Faq from './components/pages/faq/Faq'
 import NotFound from './components/pages/404/NotFound'
+import Blog from './components/pages/blog/Blog'
 
 const App = () => {
   const location = useLocation()
@@ -20,6 +21,7 @@ const App = () => {
         <Route path="/about" element={<About />} />
         <Route path="/contact" element={<Contact />} />
         <Route path="/faq" element={<Faq />} />
+        <Route path="/blog" element={<Blog />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
       {location.pathname !== '/' && <Footer />}
