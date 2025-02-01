@@ -47,6 +47,11 @@ const HighlightedProducts = () => {
                 </Link>
             ))}
         </div>
+        <div className='mt-5 2xl:mt-20'>
+            <Link to='/shop'>
+                <WhiteBtn textContent={"View All Movies"} />
+            </Link>
+        </div>
     </section>    
   )
 }
