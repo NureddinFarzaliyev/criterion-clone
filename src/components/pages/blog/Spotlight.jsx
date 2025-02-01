@@ -25,7 +25,7 @@ const Spotlight = ({highlightedBlogs}) => {
                             <p className='font-display text-sm ml-1 font-bold mb-2 text-white'>FEATURED</p>
                             <h1 className='font-text font-bold text-2xl lg:text-4xl text-white'>{blog.title}</h1>
                         </motion.div>
-                        <img src={blog.cover} className='h-96 w-full object-cover' />
+                        <img src={blog.cover} className='h-[30rem] w-full object-cover' />
                     </Link>
                 </SwiperSlide>
             ))}

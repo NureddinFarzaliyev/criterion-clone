@@ -69,3 +69,9 @@ div.swiper-button-next, div.swiper-button-prev {
 .swiper {
     margin: 0 !important;
 }
+
+.blog-card:hover{
+    & img {
+        scale: 1.15;
+    }
+}
