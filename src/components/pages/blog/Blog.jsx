@@ -23,6 +23,10 @@ const Blog = () => {
         getBlogs()
     }, [getBlogs])
 
+    useEffect(() => {
+        window.scrollTo(0, 0)
+    }, [])
+
     return (
         <GeneralSection>
             <LoadingPage isLoading={isLoading}>
