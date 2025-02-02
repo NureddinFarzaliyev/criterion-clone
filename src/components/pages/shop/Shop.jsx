@@ -7,6 +7,7 @@ import { Link } from 'react-router-dom'
 import { useSearchParams } from 'react-router-dom'
 import { errorToast } from '../../../utils/toast'
 import Pagination from './Pagination'
+import Filtering from './Filtering'
 
 const Shop = () => {
     const {getProducts} = useProducts()
@@ -28,6 +29,8 @@ const Shop = () => {
                 <h1 className='mt-5 text-3xl md:text-7xl font-text text-center'>Shop all Films</h1>
                 <p className='text-sm md:text-lg font-text text-center mt-5 opacity-70 mx-4'> Browse our collection of the greatest films from around the world, available on disc and streaming. </p>
             </div>
+
+            <Filtering />
 
             <Pagination />
 
