@@ -7,7 +7,7 @@ const LoadingPage = ({isLoading, children}) => {
     <>
         <AnimatePresence>
             {isLoading && (
-                <div className='absolute h-96 w-dvw flex items-center justify-center top-0'>
+                <div className='absolute h-96 w-dvw flex items-center justify-center'>
                     <motion.div transition={{duration: 1}} initial={{opacity: 0.5}} animate={{opacity: 0.5}} exit={{opacity: 0}} className="spin h-min w-min">
                         <Logo height={75} />
                     </motion.div>

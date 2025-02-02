@@ -1,39 +1,37 @@
-import { useDispatch, useSelector } from "react-redux"
-import { fetchHighlightedProducts } from "../features/products/highlightedProducts"
-import { useCallback, useEffect, useState } from "react"
+import { useCallback } from "react"
+import { useSelector, useDispatch } from "react-redux"
+import { setProducts, setError, setLoading, setTotalPages } from "../features/products/products"
+import supabase from "../tools/supabase"
 
 const useProducts = () => {
     const dispatch = useDispatch()
 
-    const [isLoading, setIsLoading] = useState(false)
-    const [error, setError] = useState(null)
+    const {products, isLoading, error} = useSelector(state => state.products)
 
-    const highlightedProducts = useSelector(state => state.highlightedProducts.products)
-    const isHighlightedLoading = useSelector(state => state.highlightedProducts.isLoading)
-    const isHighlightedError = useSelector(state => state.highlightedProducts.error)
+    const getProducts = useCallback(async (page) => {
+        dispatch(setLoading(true))
+        
+        const {data, error} = await supabase
+            .from('products')
+            .select('*')
+            .range((page - 1) * 20, page * 20 - 1)
 
-    useEffect(() => {
-        setIsLoading(isHighlightedLoading)
-    }, [isHighlightedLoading])
+        const {count, countError} = await supabase
+            .from('products')
+            .select('id', {count: 'exact'})
 
-    useEffect(() => {
-        if (isHighlightedError) {
-            setError(isHighlightedError)
+        if(error || countError){
+            dispatch(setError(error.message || countError.message))
+            dispatch(setLoading(false))
+            return 
         }
-    }, [isHighlightedError])
 
-    const getHighlightedProducts = useCallback(() => {
-        dispatch(fetchHighlightedProducts())
-    }, [dispatch])
+        dispatch(setProducts(data))
+        dispatch(setTotalPages(Math.ceil(count / 20)))
+        dispatch(setLoading(false))
+    }, [])
 
-
-    return {
-        getHighlightedProducts,
-        highlightedProducts,
-        isLoading,
-        error
-    }
-
+    return {getProducts, products, isLoading, error}
 }
 
 export default useProducts

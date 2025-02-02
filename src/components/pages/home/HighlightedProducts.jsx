@@ -2,11 +2,11 @@ import React, { useEffect } from 'react'
 import { motion } from 'motion/react'
 import WhiteBtn from '../../ui/WhiteBtn'
 import { Link } from 'react-router-dom'
-import useProducts from '../../../hooks/useProducts'
 import { errorToast } from '../../../utils/toast'
+import useHighlightedProducts from '../../../hooks/useHighlightedProducts'
 
 const HighlightedProducts = () => {
-    const {highlightedProducts, getHighlightedProducts, isLoading, error} = useProducts()
+    const {highlightedProducts, getHighlightedProducts, isLoading, error} = useHighlightedProducts()
 
     useEffect(() => {
         getHighlightedProducts()
