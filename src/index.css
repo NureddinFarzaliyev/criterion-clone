@@ -82,3 +82,7 @@ select {
     text-indent: 1px;
     text-overflow: '';
 }
+
+html {
+    scroll-behavior: smooth;
+}

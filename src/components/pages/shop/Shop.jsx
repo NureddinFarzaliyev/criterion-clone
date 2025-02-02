@@ -45,12 +45,12 @@ const Shop = () => {
             </div>
             <SearchBar bgStyle={`bg-gray/20 text-black dark:text-white dark:bg-black/30`} />
             <Filtering />
-            {isPagination && (<Pagination />)}
             <div className='relative'>
                 <LoadingPage isLoading={isLoading}>
                     <Products products={products} />
                 </LoadingPage>
             </div>
+            {isPagination && (<Pagination />)}
             </section>
         </GeneralSection>
     )
