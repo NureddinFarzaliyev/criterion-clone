@@ -29,7 +29,7 @@ const FilterSelect = ({allFilters, filter}) => {
               <option selected={searchParams.get(singular_filter) == item} value={item} key={index}>{item}</option>
           ))}
       </select>
-      <button onClick={removeFilter}>X</button>
+      <button className='disabled:opacity-20 cursor-pointer disabled:cursor-auto' disabled={!searchParams.get(singular_filter)} onClick={removeFilter}>X</button>
       </>
     )
 }

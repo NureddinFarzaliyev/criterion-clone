@@ -1,12 +1,14 @@
 import { useCallback } from "react"
 import { useSelector, useDispatch } from "react-redux"
-import { setProducts, setError, setLoading, setTotalPages } from "../features/products/products"
+import { setProducts, setError, setLoading, setTotalPages, setIsPagination } from "../features/products/products"
 import supabase from "../tools/supabase"
+import { useSearchParams } from "react-router-dom"
 
 const useProducts = () => {
     const dispatch = useDispatch()
-
     const {products, isLoading, error} = useSelector(state => state.products)
+    
+    const [searchParams, _] = useSearchParams();
 
     const getProducts = useCallback(async (page) => {
         dispatch(setLoading(true))
@@ -28,10 +30,38 @@ const useProducts = () => {
 
         dispatch(setProducts(data))
         dispatch(setTotalPages(Math.ceil(count / 20)))
+        dispatch(setIsPagination(true))
         dispatch(setLoading(false))
     }, [])
 
-    return {getProducts, products, isLoading, error}
+    const getFilteredProducts = useCallback(async (year, country, director) => {
+        if(year || country || director){
+            dispatch(setLoading(true))
+            dispatch(setProducts([]))
+
+            let query = supabase.from("products").select("*");
+
+            if (year) query = query.eq("year", year);
+            if (director) query = query.ilike("director", director);
+            if (country) query = query.eq("country", country);              
+
+            const { data, error } = await query;
+
+            dispatch(setLoading(false))
+
+            if (error) {
+                dispatch(setError(error.message))
+                return
+            }
+
+            dispatch(setProducts(data))
+            dispatch(setIsPagination(false))
+        }else{
+            getProducts(searchParams.get('page') || 1)
+        }
+    }, [])
+
+    return {getProducts, products, isLoading, error, getFilteredProducts}
 }
 
 export default useProducts

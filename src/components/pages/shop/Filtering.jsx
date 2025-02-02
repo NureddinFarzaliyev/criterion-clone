@@ -5,7 +5,6 @@ import FilterSelect from './FilterSelect'
 import { FILTER_TYPES, FILTER_TYPES_SINGULAR } from '../../../utils/filterTypes'
 
 const Filtering = () => {
-
     const [allFilters, setAllFilters] = useState({"countries": [], "years": [], "directors": []})
 
     const fetchAllFilters = async () => {
