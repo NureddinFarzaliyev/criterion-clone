@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from 'react'
 import supabase from '../../../tools/supabase'
+import { errorToast } from '../../../utils/toast'
+import FilterSelect from './FilterSelect'
+import { FILTER_TYPES, FILTER_TYPES_SINGULAR } from '../../../utils/filterTypes'
 
 const Filtering = () => {
-
-    const FILTER_TYPES = ["countries", "years", "directors"]
-    const FILTER_TYPES_SINGULAR = ["country", "year", "director"]
 
     const [allFilters, setAllFilters] = useState({"countries": [], "years": [], "directors": []})
 
@@ -13,6 +13,8 @@ const Filtering = () => {
             const {data, error} = await supabase
             .from(filter)
             .select('*')
+
+            if(error) return errorToast(error.message)
 
             setAllFilters((prevFilters) => ({...prevFilters, [filter]: data.map(item => item[FILTER_TYPES_SINGULAR[FILTER_TYPES.indexOf(filter)]])}))
         })
@@ -24,14 +26,7 @@ const Filtering = () => {
 
   return (
     <div>
-        {FILTER_TYPES.map((filter, index) => (
-            <select key={index} className='w-64 bg-red-900 m-5 p-5'>
-                <option value=''>{`Filter by ${filter.charAt(0).toUpperCase() + filter.slice(1)}`}</option>
-                {allFilters[filter].map((item, index) => (
-                    <option value={item} key={index}>{item}</option>
-                ))}
-            </select>
-        ))}
+        {FILTER_TYPES.map((filter, index) => <FilterSelect filter={filter} allFilters={allFilters} key={index} />)}
     </div>
   )
 }
