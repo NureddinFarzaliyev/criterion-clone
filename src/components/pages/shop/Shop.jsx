@@ -11,6 +11,9 @@ import Products from './Products'
 import SearchBar from './SearchBar'
 
 const Shop = () => {
+
+    useEffect(() => {window.scrollTo(0,0)}, [])
+
     const {getProducts, getFilteredProducts} = useProducts()
     const {products, isLoading, error, isPagination} = useSelector(state => state.products)
 
@@ -43,9 +46,11 @@ const Shop = () => {
             <SearchBar bgStyle={`bg-gray/20 text-black dark:text-white dark:bg-black/30`} />
             <Filtering />
             {isPagination && (<Pagination />)}
-            <LoadingPage isLoading={isLoading}>
-                <Products products={products} />
-            </LoadingPage>
+            <div className='relative'>
+                <LoadingPage isLoading={isLoading}>
+                    <Products products={products} />
+                </LoadingPage>
+            </div>
             </section>
         </GeneralSection>
     )

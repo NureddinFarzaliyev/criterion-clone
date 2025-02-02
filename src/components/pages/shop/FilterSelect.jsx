@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { useSearchParams } from 'react-router-dom'
 import { FILTER_TYPES, FILTER_TYPES_SINGULAR } from '../../../utils/filterTypes'
 import { RxCross1 } from "react-icons/rx";

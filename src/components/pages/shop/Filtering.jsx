@@ -9,13 +9,14 @@ const Filtering = () => {
 
     const fetchAllFilters = async () => {
         FILTER_TYPES.map(async (filter) => {
-            const {data, error} = await supabase
-            .from(filter)
-            .select('*')
-
+            const query = supabase.from(filter).select('*')
+            if(filter === 'years') query.order('year', {ascending: true})
+            const {data, error} = await query
+        
             if(error) return errorToast(error.message)
 
             setAllFilters((prevFilters) => ({...prevFilters, [filter]: data.map(item => item[FILTER_TYPES_SINGULAR[FILTER_TYPES.indexOf(filter)]])}))
+            console.log(data)
         })
     }
 
