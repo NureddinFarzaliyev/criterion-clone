@@ -1,8 +1,13 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import notFoundImg from '../../../assets/images/404.jpeg'
 import { Link } from 'react-router-dom'
 
 const NotFound = () => {
+
+  useEffect(() => {
+    window.scrollTo(0, 0)
+  }, [])
+
   return (
     <div className='h-dvh dark:bg-gray bg-light flex items-center justify-center lg:justify-start overflow-hidden'>
         <img src={notFoundImg} alt="404" className='h-dvh w-dvw object-cover absolute z-0' />

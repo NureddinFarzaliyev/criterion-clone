@@ -8,6 +8,7 @@ import { errorToast } from '../../../utils/toast'
 import Pagination from './Pagination'
 import Filtering from './Filtering'
 import Products from './Products'
+import SearchBar from './SearchBar'
 
 const Shop = () => {
     const {getProducts, getFilteredProducts} = useProducts()
@@ -34,15 +35,18 @@ const Shop = () => {
 
     return (
         <GeneralSection>
+            <section className='px-5 lg:w-[70%] mx-auto min-h-[150vh]'>
             <div className='mb-28'>
                 <h1 className='mt-5 text-3xl md:text-7xl font-text text-center'>Shop all Films</h1>
                 <p className='text-sm md:text-lg font-text text-center mt-5 opacity-70 mx-4'> Browse our collection of the greatest films from around the world, available on disc and streaming. </p>
             </div>
+            <SearchBar bgStyle={`bg-gray/20 text-black dark:text-white dark:bg-black/30`} />
             <Filtering />
             {isPagination && (<Pagination />)}
             <LoadingPage isLoading={isLoading}>
                 <Products products={products} />
             </LoadingPage>
+            </section>
         </GeneralSection>
     )
 }

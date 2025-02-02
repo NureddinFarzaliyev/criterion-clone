@@ -24,7 +24,7 @@ const Filtering = () => {
     }, [])
 
   return (
-    <div>
+    <div className='my-10 flex gap-5 flex-col md:flex-row flex-wrap max-md:items-center'>
         {FILTER_TYPES.map((filter, index) => <FilterSelect filter={filter} allFilters={allFilters} key={index} />)}
     </div>
   )
