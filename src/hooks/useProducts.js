@@ -1,4 +1,4 @@
-import { useCallback } from "react"
+import { useCallback, useState } from "react"
 import { useSelector, useDispatch } from "react-redux"
 import { setProducts, setError, setLoading, setTotalPages, setIsPagination } from "../features/products/products"
 import supabase from "../tools/supabase"
@@ -61,7 +61,31 @@ const useProducts = () => {
         }
     }, [])
 
-    return {getProducts, products, isLoading, error, getFilteredProducts}
+    const [isProductLoading, setIsProductLoading] = useState(false)
+    const [productError, setProductError] = useState(null)
+    const [singleProduct, setSingleProduct] = useState(null)
+
+    const getSingleProduct = useCallback(async (id) => {
+        setIsProductLoading(true)
+
+        const {data, error} = await supabase
+            .from('products')
+            .select('*')
+            .eq('id', id)
+            .single()
+
+        setIsProductLoading(false)
+        if(error){
+            setProductError(error.message)
+            return
+        }
+
+        setSingleProduct(data)
+        return data
+    }, [])
+
+
+    return {getProducts, products, isLoading, error, getFilteredProducts, getSingleProduct, isProductLoading, productError, singleProduct}
 }
 
 export default useProducts

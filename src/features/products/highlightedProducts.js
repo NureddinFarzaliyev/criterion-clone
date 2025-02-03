@@ -8,7 +8,6 @@ const initialState = {
 }
 
 export const fetchHighlightedProducts = createAsyncThunk('highlightedProducts/fetchHighlightedProducts', async () => {
-    console.log('fetchHighlightedProducts')
     const { data, error } = await supabase
         .from('products')
         .select('*')

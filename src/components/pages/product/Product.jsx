@@ -1,0 +1,37 @@
+import React, { useEffect } from 'react'
+import GeneralSection from '../../ui/GeneralSection'
+import { useParams } from 'react-router-dom'
+import useProducts from '../../../hooks/useProducts'
+import LoadingPage from '../../ui/LoadingPage'
+import { errorToast } from '../../../utils/toast'
+import ProductDetails from './ProductDetails'
+import PurchaseProduct from './PurchaseProduct'
+import RecommendedProducts from './RecommendedProducts'
+
+const Product = () => {
+    const {id} = useParams()
+    const {getSingleProduct, isProductLoading, productError, singleProduct} = useProducts()
+
+    useEffect(() => {window.scrollTo(0,0)}, [window.location.pathname])
+
+    useEffect(() => {
+        getSingleProduct(id)
+        if(productError) errorToast(productError)
+    }, [getSingleProduct, id])
+
+    return (
+        <GeneralSection>
+            <LoadingPage isLoading={isProductLoading}>
+                {singleProduct && (
+                    <div className='w-[90%] md:w-[80%] xl:w-[70%] mx-auto md:mt-20 flex max-lg:flex-col gap-10'>
+                        <ProductDetails singleProduct={singleProduct} />
+                        <PurchaseProduct singleProduct={singleProduct} />
+                    </div>
+                )}
+                <RecommendedProducts />
+            </LoadingPage>
+        </GeneralSection>
+    )
+}
+
+export default Product

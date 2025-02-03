@@ -12,6 +12,7 @@ import NotFound from './components/pages/404/NotFound'
 import Blog from './components/pages/blog/Blog'
 import Post from './components/pages/blog/Post'
 import Shop from './components/pages/shop/Shop'
+import Product from './components/pages/product/Product'
 
 const App = () => {
   const location = useLocation()
@@ -26,6 +27,7 @@ const App = () => {
         <Route path="/blog" element={<Blog />} />
         <Route path="/blog/:id" element={<Post />} />
         <Route path="/shop" element={<Shop />} />
+        <Route path="/shop/:id" element={<Product />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
       {location.pathname !== '/' && <Footer />}

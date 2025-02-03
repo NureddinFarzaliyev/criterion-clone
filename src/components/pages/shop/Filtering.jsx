@@ -16,7 +16,6 @@ const Filtering = () => {
             if(error) return errorToast(error.message)
 
             setAllFilters((prevFilters) => ({...prevFilters, [filter]: data.map(item => item[FILTER_TYPES_SINGULAR[FILTER_TYPES.indexOf(filter)]])}))
-            console.log(data)
         })
     }
 
