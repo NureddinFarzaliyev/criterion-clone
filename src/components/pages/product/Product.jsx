@@ -7,6 +7,7 @@ import { errorToast } from '../../../utils/toast'
 import ProductDetails from './ProductDetails'
 import PurchaseProduct from './PurchaseProduct'
 import RecommendedProducts from './RecommendedProducts'
+import RecommendedPosts from './RecommendedPosts'
 
 const Product = () => {
     const {id} = useParams()
@@ -29,6 +30,7 @@ const Product = () => {
                     </div>
                 )}
                 <RecommendedProducts />
+                <RecommendedPosts />
             </LoadingPage>
         </GeneralSection>
     )
