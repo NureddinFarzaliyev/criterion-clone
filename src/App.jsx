@@ -36,8 +36,8 @@ const App = () => {
         <Route path="/blog/:id" element={<Post />} />
         <Route path="/shop" element={<Shop />} />
         <Route path="/shop/:id" element={<Product />} />
-        <Route path="/register" element={<HideFromLoggedin><Register /></HideFromLoggedin>} />
-        <Route path="/login" element={<HideFromLoggedin><Login /></HideFromLoggedin>} />
+        <Route path="/register" element={<HideFromLoggedin children={<Register />} />} />
+        <Route path="/login" element={<HideFromLoggedin children={<Login />} />} />
         <Route path="/profile" element={<HideFromNotLogged children={<Account />}/>} />
         <Route path="/verify" element={<PleaseVerify />} />
 
