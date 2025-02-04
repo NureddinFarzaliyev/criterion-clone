@@ -16,7 +16,7 @@ const BurgerIcon = () => {
     'FAQ': '/faq',
     'Login': '/login',
     'Register': '/register',
-    'Your Account': '/account',
+    'Your Profile': '/profile',
     'Wishlist': '/wishlist',
     'Shopping Cart': '/cart',
   }

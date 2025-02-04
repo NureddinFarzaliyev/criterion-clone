@@ -2,10 +2,10 @@ import { useEffect, useState } from "react"
 import useAuth from "../../../hooks/useAuth"
 import { Link, useNavigate } from "react-router-dom"
 import { errorToast, successToast } from "../../../utils/toast"
-import { AnimatePresence, motion } from "motion/react"
 import { IoInformationCircleOutline } from "react-icons/io5";
 import FormInfoAnim from "../../ui/FormInfoAnim"
 import FormInput from "../../ui/FormInput"
+import spinner from '../../../assets/images/spinner.svg'
 
 const Register = () => {
     const navigate = useNavigate()
@@ -48,9 +48,9 @@ const Register = () => {
                 <FormInfoAnim isVisible={user.password.length !== 0 && user.repeat.length !== 0 && user.password !== user.repeat}>
                         <span className="font-display mt-2 text-sm ml-2 flex items-center gap-1"><IoInformationCircleOutline className="text-lg" /> Passwords do not match.</span>
                 </FormInfoAnim>
-                <button className="mt-14 bg-gold font-bold font-display disabled:opacity-50 not-disabled:hover:bg-light-gray not-disabled:cursor-pointer duration-500 shadow-md w-full p-3" 
+                <button className="mt-14 bg-gold h-14 font-bold font-display disabled:opacity-50 not-disabled:hover:bg-light-gray not-disabled:cursor-pointer duration-500 shadow-md w-full p-3 flex items-center justify-center" 
                 disabled={isLoading || user.password.length < 6 || user.repeat.length < 6 || user.password !== user.repeat || user.email.length === 0}>
-                    {isLoading ? "Loading..." : "REGISTER"}
+                    {isLoading ? <img src={spinner} className="h-10" /> : "REGISTER"}
                 </button>
                 <Link to="/login"><p className="text-sm opacity-70 dark:text-white text-gray text-center mt-4 underline hover:opacity-100 transition duration-500">Already have an account? Login.</p></Link>
             </form>

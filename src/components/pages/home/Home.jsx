@@ -8,9 +8,20 @@ import BlogAndStore from './BlogAndStore'
 import HomeCC40 from './HomeCC40'
 import HighlightedProducts from './HighlightedProducts'
 import Footer from '../../layout/footer/Footer'
+import { toast } from 'react-toastify'
 
 const Home = () => {
   const {highlightedBlogs, getHighlightedBlogs, isLoading, error} = useBlog()
+
+  useEffect(() => {
+    if(window.location.hash.includes('otp_expired')){
+      toast.error("Verification link expired or invalid. Please try registering again.", {
+        position: "top-center",
+        theme: "colored",
+        autoClose: 20000
+    });
+    }
+  }, [])
 
   useEffect(() => {
       getHighlightedBlogs()
