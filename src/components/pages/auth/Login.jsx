@@ -1,11 +1,11 @@
-import { useEffect, useState } from "react"
-import useAuth from "../../../hooks/useAuth"
-import { Link, useNavigate } from "react-router-dom"
-import { errorToast, successToast } from "../../../utils/toast"
+import React, { useEffect, useState } from 'react'
+import useAuth from '../../../hooks/useAuth'
+import { Link, useNavigate } from 'react-router-dom'
+import { errorToast, successToast } from '../../../utils/toast'
 
-const Register = () => {
+const Login = () => {
     const navigate = useNavigate()
-    const {isLoading, error, register} = useAuth()
+    const {isLoading, error, login} = useAuth()
 
     useEffect(() => {
         if(error) errorToast(error)
@@ -23,27 +23,27 @@ const Register = () => {
         })
     }
 
-    const handleRegister = async (e) => {
+    const handleLogin = async (e) => {
         e.preventDefault()
-        const response = await register(user.email, user.password)
+        const response = await login(user.email, user.password)
 
         if(response) {
-            successToast("Registered successfully")
-            navigate("/verify")
+            successToast("Logged in successfully")
+            navigate("/")
         }
     }
 
     return (
         <div>
-            <form onSubmit={(e) => {handleRegister(e)}}>
+            <form onSubmit={(e) => {handleLogin(e)}}>
                 <input className="bg-white text-gray m-3" type="text" name="email" onChange={(e) => {handleInput(e)}} />
                 <input className="bg-white text-gray m-3" type="password" name="password" onChange={(e) => {handleInput(e)}} />
                 <p>{error}</p>
-                <button disabled={isLoading}>{isLoading ? "Loading..." : "Register"}</button>
+                <button disabled={isLoading}>{isLoading ? "Loading..." : "Login"}</button>
             </form>
-            <Link to="/login">Login instead</Link>
+            <Link to="/register">Create new profile if you don't have one</Link>
         </div>
     )
 }
 
-export default Register
+export default Login
