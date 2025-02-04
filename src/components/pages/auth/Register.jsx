@@ -34,14 +34,15 @@ const Register = () => {
     }
 
     return (
-        <div>
+        <div className="w-[90%] md:w-[80%] lg:w-1/2 mx-auto mt-10">
             <form onSubmit={(e) => {handleRegister(e)}}>
-                <input className="bg-white text-gray m-3" type="text" name="email" onChange={(e) => {handleInput(e)}} />
-                <input className="bg-white text-gray m-3" type="password" name="password" onChange={(e) => {handleInput(e)}} />
-                <p>{error}</p>
-                <button disabled={isLoading}>{isLoading ? "Loading..." : "Register"}</button>
+                <h1 className="font-display font-bold text-3xl mb-14 lg:mt-20">CREATE ACCOUNT</h1>
+                <p className="my-4 text-center text-red-500 font-display font-bold">{error?.toUpperCase()}</p>
+                <input className="border-b-2 dark:border-b-light-gray/40 outline-none focus:border-b-light-gray/70 transition font-display p-2 text-md w-full" placeholder="Email" type="text" name="email" onChange={(e) => {handleInput(e)}} />
+                <input className="border-b-2 dark:border-b-light-gray/40 outline-none focus:border-b-light-gray/70 transition font-display p-2 text-md w-full mt-5" placeholder="Password" type="password" name="password" onChange={(e) => {handleInput(e)}} />
+                <button className="mt-14 bg-gold font-bold font-display hover:bg-light-gray cursor-pointer transition duration-500 shadow-md w-full p-3" disabled={isLoading}>{isLoading ? "Loading..." : "REGISTER"}</button>
+                <Link to="/login"><p className="text-sm opacity-70 dark:text-white text-gray text-center mt-4 underline hover:opacity-100 transition duration-500">Already have an account? Login.</p></Link>
             </form>
-            <Link to="/login">Login instead</Link>
         </div>
     )
 }
