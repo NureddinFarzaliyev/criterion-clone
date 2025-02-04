@@ -8,3 +8,11 @@ export const errorToast = (message) => {
         transition: Slide,
     });
 }
+
+export const successToast = (message) => {
+    toast.success(message, {
+        position: "bottom-right",
+        theme: "colored",
+        transition: Slide,
+    });
+}

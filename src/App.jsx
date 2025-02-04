@@ -2,6 +2,9 @@ import React from 'react'
 import { Routes, Route } from 'react-router-dom'
 import { useLocation } from 'react-router-dom'
 import ToastConfig from './components/ui/ToastConfig'
+
+import HideFromLoggedin from './components/protected/HideFromLoggedin'
+
 import Home from './components/pages/home/Home'
 import Nav from './components/layout/nav/ Nav'
 import Footer from './components/layout/footer/Footer'
@@ -13,6 +16,8 @@ import Blog from './components/pages/blog/Blog'
 import Post from './components/pages/blog/Post'
 import Shop from './components/pages/shop/Shop'
 import Product from './components/pages/product/Product'
+import Register from './components/pages/auth/Register'
+import PleaseVerify from './components/pages/auth/PleaseVerify'
 
 const App = () => {
   const location = useLocation()
@@ -28,6 +33,8 @@ const App = () => {
         <Route path="/blog/:id" element={<Post />} />
         <Route path="/shop" element={<Shop />} />
         <Route path="/shop/:id" element={<Product />} />
+        <Route path="/register" element={<HideFromLoggedin><Register /></HideFromLoggedin>} />
+        <Route path="/verify" element={<PleaseVerify />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
       {location.pathname !== '/' && <Footer />}
