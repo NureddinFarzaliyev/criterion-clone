@@ -2,9 +2,6 @@ import { useCallback, useState } from "react"
 import supabase from "../tools/supabase"
 
 const useAuth = () => {
-    // TODO: ERROR HANDLER ON HOMEPAGE
-    // http://localhost:5173/#error=access_denied&error_code=otp_expired&error_description=Email+link+is+invalid+or+has+expired
-
     const [isLoading, setIsLoading] = useState(false)
     const [error, setError] = useState(null)
 

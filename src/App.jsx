@@ -1,8 +1,6 @@
-import React from 'react'
 import { Routes, Route } from 'react-router-dom'
 import { useLocation } from 'react-router-dom'
 import ToastConfig from './components/ui/ToastConfig'
-
 import HideFromLoggedin from './components/protected/HideFromLoggedin'
 import HideFromNotLogged from './components/protected/HideFromNotLogged'
 

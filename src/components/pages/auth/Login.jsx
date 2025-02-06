@@ -11,6 +11,10 @@ const Login = () => {
     const {isLoading, error, login} = useAuth()
 
     useEffect(() => {
+        window.scrollTo(0, 0)
+    }, [])
+
+    useEffect(() => {
         if(error) errorToast(error)
     }, [error])
 
