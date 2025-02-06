@@ -39,7 +39,7 @@ const App = () => {
         <Route path="/register" element={<HideFromLoggedin children={<Register />} />} />
         <Route path="/login" element={<HideFromLoggedin children={<Login />} />} />
         <Route path="/profile" element={<HideFromNotLogged children={<Account />}/>} />
-        <Route path="/verify" element={<PleaseVerify />} />
+        <Route path="/verify" element={<HideFromLoggedin children={<PleaseVerify />} />} />
 
         <Route path="*" element={<NotFound />} />
       </Routes>
