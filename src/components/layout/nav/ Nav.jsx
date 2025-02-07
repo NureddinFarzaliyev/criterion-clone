@@ -7,9 +7,11 @@ import BurgerIcon from './BurgerIcon'
 import NavHoverAnim from './NavHoverAnim'
 
 const  Nav = () => {
+  const location = window.location.pathname
+
   return (
     <>
-    <nav className='fixed top-0 left-0 w-full dark:text-white text-gray p-4 lg:dark:p-8 lg:px-16 z-20 flex items-center justify-between bg-light/70 dark:bg-transparent'>
+    <nav className={`fixed top-0 left-0 w-full dark:text-white text-gray p-5 lg:px-16 z-20 flex items-center justify-between bg-light/70 ${location === '/' ? "dark:bg-transparent" : "dark:bg-gray/70"}`}>
         <Link to={'/'}>
           <Logo width={58} height={58} />
         </Link>
