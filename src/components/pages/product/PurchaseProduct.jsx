@@ -10,19 +10,20 @@ const PurchaseProduct = ({singleProduct}) => {
     const {addToWishlist, removeFromWishlist, isLoading, checkIfInWishlist} = useWishlist()
 
     const checkWishlist = async () => {
+        console.log('checked')
         const response = await checkIfInWishlist(singleProduct.id)
         setInWishlist(response)
     }
 
     useEffect(() => {
         if(singleProduct.id) checkWishlist()
-    }, [singleProduct.id, checkIfInWishlist])
+    }, [singleProduct.id, checkIfInWishlist, window.location.pathname])
 
-    const handleWishlist = () => {
+    const handleWishlist = async () => {
         if(inWishlist){
-            removeFromWishlist(singleProduct.id)
+            await removeFromWishlist(singleProduct.id)
         }else{
-            addToWishlist(singleProduct.id)
+            await addToWishlist(singleProduct.id)
         }
         checkWishlist()
     }

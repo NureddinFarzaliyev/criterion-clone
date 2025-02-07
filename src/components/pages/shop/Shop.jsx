@@ -47,7 +47,7 @@ const Shop = () => {
             <Filtering />
             <div className='relative'>
                 <LoadingPage isLoading={isLoading}>
-                    <Products products={products} />
+                    <Products products={products} noProductsMessage={"Please try different filters."} />
                 </LoadingPage>
             </div>
             {isPagination && (<Pagination />)}

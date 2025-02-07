@@ -2,9 +2,11 @@ import { useCallback, useState } from "react"
 import supabase from "../tools/supabase"
 import { getUserId } from "../utils/getUserId"
 import { errorToast, successToast } from "../utils/toast"
+import { setError } from "../features/products/products"
 
 const useWishlist = () => {
     const [isLoading, setIsLoading] = useState(false)
+    const [wishlist, setWishlist] = useState([])
 
     const addToWishlist = useCallback(async (product_id) => {
         setIsLoading(true)
@@ -75,11 +77,22 @@ const useWishlist = () => {
         return false
     }, [])
 
-    const fetchWishlist = useCallback((user_id) => {
+    const fetchWishlist = useCallback(async () => {
         setIsLoading(true)
+        const user_id = await getUserId()
 
-        // TODO: FETCH WISHLIST AND DISPLAY
+        const {data, error} = await supabase
+        .from('wishlist')
+        .select('*, products(*)')
+        .eq("user_id", user_id)
 
+        if(error){
+            setError(error.message)
+            errorToast("Failed to fetch wishlist")
+            return
+        }
+
+        setWishlist(data.map(data => data.products))
         setIsLoading(false)
     }, [])
 
@@ -88,7 +101,9 @@ const useWishlist = () => {
         isLoading,
         addToWishlist,
         removeFromWishlist,
-        checkIfInWishlist
+        checkIfInWishlist,
+        fetchWishlist,
+        wishlist
     }
 }
 

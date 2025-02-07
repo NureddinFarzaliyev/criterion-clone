@@ -1,6 +1,6 @@
 import useAuth from '../../../hooks/useAuth'
 import { errorToast, successToast } from '../../../utils/toast'
-import { useNavigate } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 
 const Account = () => {
     const navigate = useNavigate()
@@ -22,6 +22,7 @@ const Account = () => {
   return (
     <div>
         <button onClick={handleLogout} disabled={isLoading}>{isLoading ? "Loading..." : "Log Out"}</button>
+        <Link to='/wishlist'>Wishlist</Link>
     </div>
   )
 }
