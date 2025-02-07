@@ -37,7 +37,7 @@ const App = () => {
         <Route path="/shop/:id" element={<Product />} />
         <Route path="/register" element={<HideFromLoggedin children={<Register />} />} />
         <Route path="/login" element={<HideFromLoggedin children={<Login />} />} />
-        <Route path="/profile" element={<HideFromNotLogged children={<Account />}/>} />
+        <Route path="/account" element={<HideFromNotLogged children={<Account />}/>} />
         <Route path="/wishlist" element={<HideFromNotLogged children={<Wishlist />}/>} />
         <Route path="/verify" element={<HideFromLoggedin children={<PleaseVerify />} />} />
 

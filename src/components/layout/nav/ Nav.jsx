@@ -18,7 +18,7 @@ const  Nav = () => {
             <Link to={'/blog'} className={`hidden md:block dark:text-white text-gray`}><NavHoverAnim>Check out The Blog</NavHoverAnim></Link>
             <SearchIcon />
             <Link to={'/cart'}><CartIcon /></Link>
-            <Link to={'/profile'}><ProfileIcon /></Link>
+            <Link to={'/account'}><ProfileIcon /></Link>
             <BurgerIcon />
         </div>
     </nav>
