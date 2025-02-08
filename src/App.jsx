@@ -21,6 +21,7 @@ import Login from './components/pages/auth/Login'
 import Account from './components/pages/account/Account'
 import Wishlist from './components/pages/account/Wishlist'
 import Search from './components/pages/search/Search'
+import Cart from './components/pages/cart/Cart'
 
 const App = () => {
   const location = useLocation()
@@ -42,6 +43,7 @@ const App = () => {
         <Route path="/wishlist" element={<HideFromNotLogged children={<Wishlist />}/>} />
         <Route path="/verify" element={<HideFromLoggedin children={<PleaseVerify />} />} />
         <Route path="/search" element={<Search />} />
+        <Route path="/cart" element={<HideFromNotLogged children={<Cart />} />} />
 
         <Route path="*" element={<NotFound />} />
       </Routes>

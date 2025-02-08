@@ -3,14 +3,15 @@ import { motion } from 'motion/react'
 import useWishlist from '../../../hooks/useWishlist';
 import spinner from '../../../assets/images/spinner.svg'
 import { useEffect, useState } from 'react';
+import useCart from '../../../hooks/useCart';
 
 const PurchaseProduct = ({singleProduct}) => {
     const cartBtnControls = useAnimationControls()
     const [inWishlist, setInWishlist] = useState(true)
     const {addToWishlist, removeFromWishlist, isLoading, checkIfInWishlist} = useWishlist()
+    const {addToCart, isCartLoading} = useCart()
 
     const checkWishlist = async () => {
-        console.log('checked')
         const response = await checkIfInWishlist(singleProduct.id)
         setInWishlist(response)
     }
@@ -33,12 +34,17 @@ const PurchaseProduct = ({singleProduct}) => {
             <img src={singleProduct.cover_large} alt={singleProduct.title} className='shadow-xl w-[80%]' />
             <div className='mt-10 w-[80%]'>
                 <motion.button whileHover={{scale: 1.05}} whileTap={{scale: 0.95}} transition={{duration: 0.5}}
+                onClick={()=>addToCart(singleProduct.id)}
                 onHoverStart={()=>cartBtnControls.start({height: '100%'})} onHoverEnd={()=>cartBtnControls.start({height: '0%'})}
                 className='border-2 w-full border-gold h-20 px-5 flex items-center justify-between cursor-pointer relative overflow-hidden font-display font-bold'>
-                    <motion.div animate={cartBtnControls} initial={{height: '0%'}} 
-                    className='bg-gold h-full w-full absolute left-0 z-0 top-0 origin-top'></motion.div>
-                    <div className='z-10'>ADD TO CART</div>
-                    <div className='z-10 font-text text-2xl'>${singleProduct.price}</div>
+                    {isCartLoading ? (
+                        <img src={spinner} alt="Loading" className='h-14 mx-auto opacity-40' />
+                    ) : (
+                        <><motion.div animate={cartBtnControls} initial={{height: '0%'}} 
+                        className='bg-gold h-full w-full absolute left-0 z-0 top-0 origin-top'></motion.div>
+                        <div className='z-10'>ADD TO CART</div>
+                        <div className='z-10 font-text text-2xl'>${singleProduct.price}</div></>
+                    )}
                 </motion.button>
 
                 <motion.button disabled={isLoading} whileHover={{scale: 1.05, opacity: 1}} whileTap={{scale: 0.95, opacity: 0.5}} transition={{duration: 0.5}}

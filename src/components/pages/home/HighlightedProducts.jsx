@@ -42,7 +42,7 @@ const HighlightedProducts = () => {
         </div>
         <div className='grid grid-cols-2 2xl:hidden gap-1 sm:gap-4'>
             {highlightedProducts?.map((movie, i) => (
-                <Link to={`/movie/${movie.id}`} key={i} className='px-1'>
+                <Link to={`/shop/${movie.id}`} key={i} className='px-1'>
                     <motion.img whileHover={{scale: 1.1}} src={movie.cover_small} alt={movie.title} className='w-[175px] sm:w-[200px] xl:w-[230px] rounded-md' />
                 </Link>
             ))}
