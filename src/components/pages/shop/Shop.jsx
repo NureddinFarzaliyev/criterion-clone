@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import GeneralSection from '../../ui/GeneralSection'
 import useProducts from '../../../hooks/useProducts'
 import { useSelector } from 'react-redux'
@@ -9,6 +9,7 @@ import Pagination from './Pagination'
 import Filtering from './Filtering'
 import Products from './Products'
 import SearchBar from './SearchBar'
+import ProductsList from './ProductsList'
 
 const Shop = () => {
 
@@ -18,6 +19,8 @@ const Shop = () => {
     const {products, isLoading, error, isPagination} = useSelector(state => state.products)
 
     useEffect(() => {if(error) errorToast(error)}, [error])
+
+    const [isList, setIsList] = useState(false)
     
     const [searchParams, setSearchParams] = useSearchParams();
 
@@ -44,10 +47,14 @@ const Shop = () => {
                 <p className='text-sm md:text-lg font-text text-center mt-5 opacity-70 mx-4'> Browse our collection of the greatest films from around the world, available on disc and streaming. </p>
             </div>
             <SearchBar bgStyle={`bg-gray/20 text-black dark:text-white dark:bg-black/30`} />
-            <Filtering />
+            <Filtering toggleView={() => {setIsList(!isList)}} isList={isList} />
             <div className='relative'>
                 <LoadingPage isLoading={isLoading}>
-                    <Products products={products} noProductsMessage={"Please try different filters."} />
+                    {isList ? (
+                        <ProductsList products={products} noProductsMessage={"Please try different filters."} />
+                    ) : (
+                        <Products products={products} noProductsMessage={"Please try different filters."} />
+                    )}
                 </LoadingPage>
             </div>
             {isPagination && (<Pagination />)}

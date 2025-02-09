@@ -16,3 +16,11 @@ export const successToast = (message) => {
         transition: Slide,
     });
 }
+
+export const infoToast = (message) => {
+    toast.info(message, {
+        position: "bottom-right",
+        theme: "colored",
+        transition: Slide,
+    });
+}

@@ -4,12 +4,15 @@ import useWishlist from '../../../hooks/useWishlist';
 import spinner from '../../../assets/images/spinner.svg'
 import { useEffect, useState } from 'react';
 import useCart from '../../../hooks/useCart';
+import { useSelector } from 'react-redux';
+import { infoToast } from '../../../utils/toast';
 
 const PurchaseProduct = ({singleProduct}) => {
     const cartBtnControls = useAnimationControls()
     const [inWishlist, setInWishlist] = useState(true)
     const {addToWishlist, removeFromWishlist, isLoading, checkIfInWishlist} = useWishlist()
     const {addToCart, isCartLoading} = useCart()
+    const {userId} = useSelector(state => state.auth)
 
     const checkWishlist = async () => {
         const response = await checkIfInWishlist(singleProduct.id)
@@ -29,12 +32,20 @@ const PurchaseProduct = ({singleProduct}) => {
         checkWishlist()
     }
 
+    const handleCart = async () => {
+        if(userId){
+            addToCart(singleProduct.id)
+        }else{
+            infoToast("Please login to add to cart")
+        }
+    }
+
     return (
         <div className='lg:w-1/2 flex flex-col items-center'>
             <img src={singleProduct.cover_large} alt={singleProduct.title} className='shadow-xl w-[80%]' />
             <div className='mt-10 w-[80%]'>
                 <motion.button whileHover={{scale: 1.05}} whileTap={{scale: 0.95}} transition={{duration: 0.5}}
-                onClick={()=>addToCart(singleProduct.id)}
+                onClick={()=>handleCart(singleProduct.id)}
                 onHoverStart={()=>cartBtnControls.start({height: '100%'})} onHoverEnd={()=>cartBtnControls.start({height: '0%'})}
                 className='border-2 w-full border-gold h-20 px-5 flex items-center justify-between cursor-pointer relative overflow-hidden font-display font-bold'>
                     {isCartLoading ? (

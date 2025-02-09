@@ -1,4 +1,4 @@
-import { useCallback, useState } from "react"
+import { useCallback, useEffect, useState } from "react"
 import supabase from "../tools/supabase"
 import { errorToast, successToast } from "../utils/toast"
 import { useSelector } from "react-redux"
@@ -9,6 +9,16 @@ const useCart = () => {
     const [localLoading, setLocalLoading] = useState(false)
     const [error, setError] = useState(null)
     const {userId} = useSelector(state => state.auth)
+
+    const getTotal = () => {
+        if(cartProducts){
+            const total = cartProducts.reduce((acc, product) => acc + (product.price * product.quantity), 0)
+            return {
+                total,
+                shipping: total > 250 ? 0 : 50
+            }
+        }
+    }
 
     const fetchCart = useCallback(async () => {
         setIsLoading(true)
@@ -46,7 +56,7 @@ const useCart = () => {
         }
 
         setCartProducts([...cartProducts, data])
-        successToast("Added to cart")
+        successToast("Added to Cart")
         setIsLoading(false)
     }
 
@@ -67,7 +77,6 @@ const useCart = () => {
 
         setLocalLoading(false)
         setCartProducts(cartProducts.filter(product => product.id !== product_id))
-        successToast("Removed from cart")
     }
 
     const decrementCart = async (product_id) => {
@@ -88,7 +97,6 @@ const useCart = () => {
             }
             return product
         }))
-        successToast("Decremented from cart")
         setLocalLoading(false)
     }
 
@@ -110,7 +118,6 @@ const useCart = () => {
             }
             return product
         }))
-        successToast("Incremented from cart")
         setLocalLoading(false)
     }
 
@@ -123,7 +130,8 @@ const useCart = () => {
         removeFromCart,
         decrementCart,
         incrementCart,
-        localLoading
+        localLoading,
+        getTotal
     }
 }
 
