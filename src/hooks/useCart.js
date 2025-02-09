@@ -1,40 +1,42 @@
 import { useCallback, useState } from "react"
-import { getUserId } from "../utils/getUserId"
 import supabase from "../tools/supabase"
 import { errorToast, successToast } from "../utils/toast"
+import { useSelector } from "react-redux"
 
 const useCart = () => {
     const [cartProducts, setCartProducts] = useState([])
     const [isCartLoading, setIsLoading] = useState(false)
     const [localLoading, setLocalLoading] = useState(false)
     const [error, setError] = useState(null)
+    const {userId} = useSelector(state => state.auth)
 
     const fetchCart = useCallback(async () => {
         setIsLoading(true)
-        const user_id = await getUserId()
 
-        const {data, error} = await supabase
-        .from('cart')
-        .select("*, products(*)")
-        .eq("user_id", user_id)
-
-        if(error){
-            setError(error.message)
-            errorToast("Failed to fetch wishlist")
-            return
+        if(userId){
+            const {data, error} = await supabase
+            .from('cart')
+            .select("*, products(*)")
+            .eq("user_id", userId)
+    
+            if(error){
+                setError(error.message)
+                errorToast("Failed to fetch cart")
+                return
+            }
+    
+            setCartProducts(data.map(data => ({...data.products, quantity: data.quantity})))
         }
 
-        setCartProducts(data.map(data => ({...data.products, quantity: data.quantity})))
         setIsLoading(false)
     }, [])
 
     const addToCart = async (product_id) => {
         setIsLoading(true)
-        const user_id = await getUserId()
 
         // Call the add_to_cart postgres function
         const {data, error} = await supabase
-        .rpc('add_to_cart', {user_id, product_id})
+        .rpc('add_to_cart', {user_id: userId, product_id})
 
         if(error){
             console.log(error)
@@ -50,12 +52,11 @@ const useCart = () => {
 
     const removeFromCart = async (product_id) => {
         setLocalLoading(true)
-        const user_id = await getUserId()
 
         const {data, error} = await supabase
         .from('cart')
         .delete()
-        .eq("user_id", user_id)
+        .eq("user_id", userId)
         .eq("product_id", product_id)
 
         if(error){
@@ -71,10 +72,9 @@ const useCart = () => {
 
     const decrementCart = async (product_id) => {
         setLocalLoading(true)
-        const user_id = await getUserId()
 
         const {data, error} = await supabase
-        .rpc('decrement_cart', {user_id, product_id})
+        .rpc('decrement_cart', {user_id: userId, product_id})
 
         if(error){
             setError(error.message)
@@ -84,7 +84,7 @@ const useCart = () => {
 
         setCartProducts(cartProducts.map(product => {
             if(product.id === product_id){
-                return {...product, quantity: product.quantity - 1}
+                return {...product, quantity: product.quantity - 1 === 0 ? null : product.quantity - 1}
             }
             return product
         }))
@@ -94,10 +94,9 @@ const useCart = () => {
 
     const incrementCart = async (product_id) => {
         setLocalLoading(true)
-        const user_id = await getUserId()
 
         const {data, error} = await supabase
-        .rpc('add_to_cart', {user_id, product_id})
+        .rpc('add_to_cart', {user_id: userId, product_id})
 
         if(error){
             setError(error.message)

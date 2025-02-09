@@ -4,11 +4,14 @@ import { errorToast, successToast } from '../../../utils/toast'
 import { Link, useNavigate } from 'react-router-dom'
 import spinner from '../../../assets/images/spinner.svg'
 import { BiHeart, BiLogOut } from 'react-icons/bi'
+import { useDispatch } from 'react-redux'
+import { setAuth } from '../../../features/auth/auth'
 
 const Account = () => {
     const navigate = useNavigate()
     const {logout, isLoading, error, getUser} = useAuth()
     const [user, setUser] = useState(null)
+    const dispatch = useDispatch()
 
     useEffect(() => {
         const fetchUser = async () => {
@@ -17,7 +20,6 @@ const Account = () => {
                 navigate('/')
             }
 
-            console.log(user)
             setUser(user)
         }
 
@@ -30,6 +32,7 @@ const Account = () => {
         if(response){
             successToast("Logged Out Successfully!")
             navigate('/')
+            dispatch(setAuth({isAuthenticated: false, userId: null}))
         }
 
         if(error){

@@ -18,7 +18,7 @@ const Cart = () => {
                         <>
                         <h1 key={index}>{product?.title} - {product?.quantity}</h1>
                         <button disabled={localLoading} className='cursor-pointer disabled:bg-red-900' onClick={()=>removeFromCart(product.id)}>{localLoading ? "loading" : "delete"}</button>
-                        <button disabled={localLoading} className='cursor-pointer disabled:bg-red-900' onClick={()=>decrementCart(product.id)}>{localLoading ? "loading" : "decrement"}</button>
+                        <button disabled={localLoading || product.quantity === 1} className='cursor-pointer disabled:bg-red-900' onClick={()=>decrementCart(product.id)}>{localLoading ? "loading" : "decrement"}</button>
                         <button disabled={localLoading} className='cursor-pointer disabled:bg-red-900' onClick={()=>incrementCart(product.id)}>{localLoading ? "loading" : "increment"}</button>
                         </>
                     )}

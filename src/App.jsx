@@ -22,11 +22,13 @@ import Account from './components/pages/account/Account'
 import Wishlist from './components/pages/account/Wishlist'
 import Search from './components/pages/search/Search'
 import Cart from './components/pages/cart/Cart'
+import CheckAuth from './components/protected/CheckAuth'
 
 const App = () => {
   const location = useLocation()
   return (
     <>
+      <CheckAuth />
       <Nav />
       <Routes>
         <Route path="/" element={<Home />} />

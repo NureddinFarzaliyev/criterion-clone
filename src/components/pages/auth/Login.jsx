@@ -5,10 +5,13 @@ import { errorToast, successToast } from '../../../utils/toast'
 import FormInput from '../../ui/FormInput'
 import FormInfoAnim from '../../ui/FormInfoAnim'
 import spinner from '../../../assets/images/spinner.svg'
+import { useDispatch } from 'react-redux'
+import { setAuth } from '../../../features/auth/auth'
 
 const Login = () => {
     const navigate = useNavigate()
     const {isLoading, error, login} = useAuth()
+    const dispatch = useDispatch()
 
     useEffect(() => {
         window.scrollTo(0, 0)
@@ -30,6 +33,7 @@ const Login = () => {
         if(response) {
             successToast("Logged in successfully")
             navigate("/")
+            dispatch(setAuth({isAuthenticated: true, userId: response.user.id}))
         }
     }
 
