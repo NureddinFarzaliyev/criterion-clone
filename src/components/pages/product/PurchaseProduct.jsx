@@ -49,9 +49,9 @@ const PurchaseProduct = ({singleProduct}) => {
 
                 <motion.button disabled={isLoading} whileHover={{scale: 1.05, opacity: 1}} whileTap={{scale: 0.95, opacity: 0.5}} transition={{duration: 0.5}}
                 onClick={handleWishlist}
-                className='disabled:opacity-10 mt-4 border-2 w-full border-light-gray opacity-50 h-20 px-5 flex items-center justify-between cursor-pointer relative overflow-hidden font-display font-bold'>
+                className='mt-4 border-2 w-full border-light-gray h-20 px-5 flex items-center justify-between cursor-pointer relative overflow-hidden font-display font-bold'>
                     {isLoading ? (
-                        <img src={spinner} alt="Loading" className='h-14 mx-auto opacity-40' />
+                        <img src={spinner} alt="Loading" className='h-14 mx-auto' />
                     ) : (
                         <div className='z-10'>{inWishlist ? "REMOVE FROM WISHLIST"  : "ADD TO WISHLIST"}</div>
                     )} 

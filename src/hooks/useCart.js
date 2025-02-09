@@ -6,6 +6,7 @@ import { errorToast, successToast } from "../utils/toast"
 const useCart = () => {
     const [cartProducts, setCartProducts] = useState([])
     const [isCartLoading, setIsLoading] = useState(false)
+    const [localLoading, setLocalLoading] = useState(false)
     const [error, setError] = useState(null)
 
     const fetchCart = useCallback(async () => {
@@ -23,7 +24,7 @@ const useCart = () => {
             return
         }
 
-        setCartProducts(data.map(data => data.products))
+        setCartProducts(data.map(data => ({...data.products, quantity: data.quantity})))
         setIsLoading(false)
     }, [])
 
@@ -48,7 +49,7 @@ const useCart = () => {
     }
 
     const removeFromCart = async (product_id) => {
-        setIsLoading(true)
+        setLocalLoading(true)
         const user_id = await getUserId()
 
         const {data, error} = await supabase
@@ -63,9 +64,55 @@ const useCart = () => {
             return
         }
 
+        setLocalLoading(false)
         setCartProducts(cartProducts.filter(product => product.id !== product_id))
         successToast("Removed from cart")
-        setIsLoading(false)
+    }
+
+    const decrementCart = async (product_id) => {
+        setLocalLoading(true)
+        const user_id = await getUserId()
+
+        const {data, error} = await supabase
+        .rpc('decrement_cart', {user_id, product_id})
+
+        if(error){
+            setError(error.message)
+            errorToast("Failed to decrement from cart")
+            return
+        }
+
+        setCartProducts(cartProducts.map(product => {
+            if(product.id === product_id){
+                return {...product, quantity: product.quantity - 1}
+            }
+            return product
+        }))
+        successToast("Decremented from cart")
+        setLocalLoading(false)
+    }
+
+    const incrementCart = async (product_id) => {
+        setLocalLoading(true)
+        const user_id = await getUserId()
+
+        const {data, error} = await supabase
+        .rpc('add_to_cart', {user_id, product_id})
+
+        if(error){
+            setError(error.message)
+            errorToast("Failed to increment from cart")
+            return
+        }
+
+        setCartProducts(cartProducts.map(product => {
+            if(product.id === product_id){
+                return {...product, quantity: product.quantity + 1}
+            }
+            return product
+        }))
+        successToast("Incremented from cart")
+        setLocalLoading(false)
     }
 
     return {
@@ -75,6 +122,9 @@ const useCart = () => {
         error,
         addToCart,
         removeFromCart,
+        decrementCart,
+        incrementCart,
+        localLoading
     }
 }
 
