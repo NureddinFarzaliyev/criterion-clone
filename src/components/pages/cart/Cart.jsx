@@ -14,7 +14,7 @@ const Cart = () => {
     }, [])
 
   return (
-    <div className='relative w-[90%] md:w-[80%] mx-auto mt-20'>
+    <div className='relative w-[90%] md:w-[80%] mx-auto mt-20 CART'>
         <LoadingPage isLoading={isCartLoading}>
             {cartProducts.length > 0 ? (
                 <div className='grid grid-cols-1 lg:grid-cols-3'>

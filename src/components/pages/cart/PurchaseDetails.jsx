@@ -3,7 +3,7 @@ import Payment from './Payment'
 
 const PurchaseDetails = ({total, shipping}) => {
   return (
-    <div className='lg:ml-4 h-[70vh] px-5 max-lg:mt-10 font-text'>
+    <div className='lg:ml-4 min-h-[70vh] px-5 max-lg:mt-10 font-text'>
         <p className='font-display text-xs xl:text-sm mb-5 opacity-70'>PURCHASE DETAILS</p>
         <div className='flex justify-between items-center'>
             <p className='text-lg xl:text-xl'>Subtotal</p>
