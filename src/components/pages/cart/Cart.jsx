@@ -29,10 +29,10 @@ const Cart = () => {
                                 <p className='opacity-50 w-min text-lg md:text-xl text-center'>${product.price * product.quantity}</p>
                             </div>
                             <div className='flex items-center justify-center col-span-2'>
-                                <button disabled={localLoading || product.quantity === 1} onClick={() => decrementCart(product.id)} className='opacity-50 disabled:opacity-20 hover:opacity-100 text-white not-disabled:cursor-pointer px-3 py-1 border-2 border-white/50 transition duration-500 text-xl rounded-full h-8 w-8 flex items-center justify-center'>-</button>
+                                <button disabled={localLoading || product.quantity === 1} onClick={() => decrementCart(product.id)} className='opacity-70 dark:opacity-50 disabled:opacity-20 hover:opacity-100 text-black dark:text-white not-disabled:cursor-pointer px-3 py-1 border-2 border-black dark:border-white/50 transition duration-500 text-xl rounded-full h-8 w-8 flex items-center justify-center'>-</button>
                                 <span className='text-xl md:text-2xl mx-5'>{product.quantity}</span>
-                                <button disabled={localLoading} onClick={() => incrementCart(product.id)} className='opacity-50 disabled:opacity-20 hover:opacity-100 text-white not-disabled:cursor-pointer px-3 py-1 border-2 border-white/50 transition duration-500 text-xl rounded-full h-8 w-8 flex items-center justify-center'>+</button>
-                                <button disabled={localLoading} onClick={() => removeFromCart(product.id)} className='opacity-50 disabled:opacity-20 hover:opacity-100 text-white not-disabled:cursor-pointer font-display p-2 ml-3 border-2 border-white/50 transition duration-500 rounded-full h-8 w-8 flex items-center justify-center'>x</button>
+                                <button disabled={localLoading} onClick={() => incrementCart(product.id)} className='opacity-70 dark:opacity-50 disabled:opacity-20 hover:opacity-100 text-black dark:text-white not-disabled:cursor-pointer px-3 py-1 border-2 border-black dark:border-white/50 transition duration-500 text-xl rounded-full h-8 w-8 flex items-center justify-center'>+</button>
+                                <button disabled={localLoading} onClick={() => removeFromCart(product.id)} className='opacity-70 dark:opacity-50 disabled:opacity-20 hover:opacity-100 text-black dark:text-white not-disabled:cursor-pointer font-display p-2 ml-3 border-2 border-black dark:border-white/50 transition duration-500 rounded-full h-8 w-8 flex items-center justify-center'>x</button>
                             </div>
                         </div>
                     ))}
