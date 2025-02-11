@@ -1,7 +1,6 @@
 import React, { useEffect } from 'react'
 import useCart from '../../../hooks/useCart'
 import LoadingPage from '../../ui/LoadingPage'
-import Payment from './Payment'
 import WhiteBtn from '../../ui/WhiteBtn'
 import { Link } from 'react-router-dom'
 import PurchaseDetails from './PurchaseDetails'

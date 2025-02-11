@@ -6,6 +6,7 @@ import spinner from '../../../assets/images/spinner.svg'
 import { BiHeart, BiLogOut } from 'react-icons/bi'
 import { useDispatch } from 'react-redux'
 import { setAuth } from '../../../features/auth/auth'
+import UserAddress from './UserAddress'
 
 const Account = () => {
     const navigate = useNavigate()
@@ -48,6 +49,7 @@ const Account = () => {
             <button className='h-14 w-48 bg-gray dark:bg-white text-white dark:text-gray hover:scale-110 transition-all duration-400 shadow-lg disabled:dark:bg-white/20 disabled:bg-gray/80 flex items-center justify-center not-disabled:cursor-pointer font-display font-bold' 
             onClick={handleLogout} disabled={isLoading}>{isLoading ? (<img src={spinner} className='h-10' alt='Loading...' />) : (<><BiLogOut className='text-2xl mt-[-3px] mr-2' /> LOG OUT</>)}</button>
         </div>
+        <UserAddress />
     </div>
   )
 }
