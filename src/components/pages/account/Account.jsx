@@ -7,6 +7,7 @@ import { BiHeart, BiLogOut } from 'react-icons/bi'
 import { useDispatch } from 'react-redux'
 import { setAuth } from '../../../features/auth/auth'
 import UserAddress from './UserAddress'
+import UserPayment from './UserPayment'
 
 const Account = () => {
     const navigate = useNavigate()
@@ -50,6 +51,7 @@ const Account = () => {
             onClick={handleLogout} disabled={isLoading}>{isLoading ? (<img src={spinner} className='h-10' alt='Loading...' />) : (<><BiLogOut className='text-2xl mt-[-3px] mr-2' /> LOG OUT</>)}</button>
         </div>
         <UserAddress />
+        <UserPayment />
     </div>
   )
 }

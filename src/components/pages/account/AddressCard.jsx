@@ -19,7 +19,7 @@ const AddressCard = ({address, onDelete}) => {
     }
 
     return (
-        <div className='dark:bg-white/5 bg-black/10 font-text p-5 text-lg mt-4 shadow-lg flex items-center justify-between'>
+        <div className='dark:bg-white/5 bg-gray text-white font-text p-5 text-lg mt-4 shadow-lg flex items-center justify-between'>
             <h3>{address.address}</h3>
             <button onClick={() => {handleDelete(address.id)}} className='opacity-50 hover:opacity-100 transition duration-300 cursor-pointer text-3xl'>
                 {deleting ? <img className='h-7' src={spinner} alt="loading" /> : <IoCloseOutline />}

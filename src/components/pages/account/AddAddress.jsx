@@ -47,8 +47,8 @@ const AddAddress = ({onAdd}) => {
 
   return (
     <>
-    <button onClick={() => {setIsOpen(true)}} className='dark:bg-white/5 bg-black/10 font-text p-5 text-lg mt-4 shadow-lg w-full flex items-center justify-center gap-3 opacity-60 hover:opacity-100 transition duration-500 cursor-pointer'>
-        <FaPlus /> Add a new address
+    <button onClick={() => {setIsOpen(true)}} className='dark:bg-white/5 bg-gray text-white font-display p-5 text-md mt-4 shadow-lg w-full flex items-center justify-center gap-3 opacity-60 hover:opacity-100 transition duration-500 cursor-pointer'>
+        <FaPlus /> ADD A NEW ADDRESS
     </button>
     <Dialog transition open={isOpen} onClose={() => setIsOpen(false)} className="fixed inset-0 z-50 flex w-screen items-center justify-center bg-black/30 p-4 transition duration-300 ease-out data-[closed]:opacity-0">
         <DialogBackdrop className="fixed inset-0 bg-black/50" />
@@ -67,7 +67,7 @@ const AddAddress = ({onAdd}) => {
 
             <div className="flex gap-4 justify-end font-display">
               <button disabled={adding} className='bg-gray/70 hover:bg-gray/90 text-white transition duration-500 p-3 px-5 cursor-pointer' onClick={() => setIsOpen(false)}>CANCEL</button>
-              <button disabled={adding} onClick={handleAddress} className='bg-gold p-3 cursor-pointer text-white px-7 hover:bg-white hover:text-gray shadow-lg transition border-2 border-gold duration-700 hover:scale-110' >
+              <button disabled={adding} onClick={handleAddress} className='bg-gold p-3 cursor-pointer text-white px-7 not-disabled:hover:bg-white not-disabled:hover:text-gray shadow-lg transition border-2 border-gold duration-700 not-disabled:hover:scale-110' >
                 {adding ? <img className='h-7' src={spinner} alt="loading" /> : "ADD"}
               </button>
             </div>
