@@ -9,8 +9,8 @@ import { useSelector } from 'react-redux';
 import supabase from '../../../tools/supabase';
 import AddPayment from '../account/AddPayment';
 
-const ChoosePayment = ({}) => {
-  const [chosenMethod, setChosenMethod] = useState({})
+const ChoosePayment = ({chosenMethod, setChosenMethod}) => {
+  // const [chosenMethod, setChosenMethod] = useState({})
   const { userId } = useSelector(state => state.auth)
   const [payments, setPayments] = useState([])
 

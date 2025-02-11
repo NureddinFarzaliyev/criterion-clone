@@ -121,6 +121,24 @@ const useCart = () => {
         setLocalLoading(false)
     }
 
+    const clearCart = useCallback(async () => {
+        setLocalLoading(true)
+
+        const {data, error} = await supabase
+        .from('cart')
+        .delete()
+        .eq("user_id", userId)
+
+        if(error){
+            setError(error.message)
+            errorToast("Failed to clear cart")
+            return
+        }
+
+        setCartProducts([])
+        setLocalLoading(false)
+    }, [])
+
     return {
         isCartLoading,
         cartProducts,
@@ -131,7 +149,8 @@ const useCart = () => {
         decrementCart,
         incrementCart,
         localLoading,
-        getTotal
+        getTotal,
+        clearCart
     }
 }
 

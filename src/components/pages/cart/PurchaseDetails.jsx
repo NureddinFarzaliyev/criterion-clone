@@ -1,7 +1,7 @@
 import React from 'react'
 import Payment from './Payment'
 
-const PurchaseDetails = ({total, shipping}) => {
+const PurchaseDetails = ({total, shipping, onPurchase}) => {
   return (
     <div className='lg:ml-4 min-h-[70vh] px-5 max-lg:mt-10 font-text'>
         <p className='font-display text-xs xl:text-sm mb-5 opacity-70'>PURCHASE DETAILS</p>
@@ -18,7 +18,7 @@ const PurchaseDetails = ({total, shipping}) => {
             <p className='text-xl xl:text-2xl font-bold'>Total</p>
             <p className='text-xl xl:text-2xl'>${total + shipping}</p>
         </div>
-        <Payment />
+        <Payment onPurchase={onPurchase} />
     </div>
   )
 }

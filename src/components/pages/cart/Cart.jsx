@@ -37,7 +37,7 @@ const Cart = () => {
                         </div>
                     ))}
                 </div>
-                <PurchaseDetails total={getTotal().total} shipping={getTotal().shipping} />
+                <PurchaseDetails total={getTotal().total} shipping={getTotal().shipping} onPurchase={fetchCart} />
             </div>
             ) : (
             <div className='flex flex-col gap-3 items-center justify-center'>

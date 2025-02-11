@@ -7,10 +7,10 @@ import { FaCheck } from "react-icons/fa";
 import { IoLocationSharp } from "react-icons/io5";
 import AddAddress from '../account/AddAddress'
 
-const ChooseAddress = () => {
+const ChooseAddress = ({chosenAddress, setChosenAddress}) => {
     const [addresses, setAddresses] = useState([])
     const {userId} = useSelector(state => state.auth)
-    const [chosenAddress, setChosenAddress] = useState({})
+    // const [chosenAddress, setChosenAddress] = useState({})
 
     const fetchAddresses = async () => {
         const { data, error } = await supabase
