@@ -41,8 +41,8 @@ const Home = () => {
         </div>
       </div>
 
-      <StatisticsGroup isUsd={true} title={"Invoice Statistics"} texts={["total (usd)", "today (usd)", "last week (usd)", "last month (usd)"]}
-      numbers={[statistics?.orders_total_price, statistics?.orders_today_total_price, statistics?.orders_last_week_total_price, statistics?.orders_last_month_total_price]} />
+      <StatisticsGroup isUsd={true} title={"Invoice Statistics"} texts={["today", "last week", "last month", "total" ]}
+      numbers={[statistics?.orders_today_total_price, statistics?.orders_last_week_total_price, statistics?.orders_last_month_total_price, statistics?.orders_total_price]} />
     </LoadingPage>
   )
 }

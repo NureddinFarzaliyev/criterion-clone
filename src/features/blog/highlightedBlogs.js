@@ -23,6 +23,15 @@ const highlightedBlogsSlice = createSlice({
     name: 'highlightedBlogs',
     initialState,
 
+    reducers: {
+        removeHighlightedBlog: (state, action) => {
+            state.blogs = state.blogs.filter(blog => blog.id !== action.payload)
+        },
+        addHighlightedBlog: (state, action) => {
+            state.blogs.push(action.payload)
+        }
+    },
+
     extraReducers: (builder) => {
         builder.addCase(fetchHighlightedBlogs.fulfilled, (state, action) => {
             state.blogs = action.payload
@@ -39,4 +48,5 @@ const highlightedBlogsSlice = createSlice({
     }
 })
 
+export const { removeHighlightedBlog, addHighlightedBlog } = highlightedBlogsSlice.actions
 export default highlightedBlogsSlice.reducer
