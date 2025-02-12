@@ -3,21 +3,20 @@ import ChoosePayment from './ChoosePayment'
 import ChooseAddress from './ChooseAddress'
 import { useState } from 'react'
 import { errorToast, successToast } from '../../../utils/toast'
-import useCart from '../../../hooks/useCart'
 
 const Payment = ({onPurchase}) => {
   const [chosenMethod, setChosenMethod] = useState({})
   const [chosenAddress, setChosenAddress] = useState({})
-  const {clearCart} = useCart()
 
   const handlePurchase = async () => {
     if(!chosenMethod.method) return errorToast('Please choose a payment method.')
     if(!chosenAddress.address) return errorToast('Please choose a shipping address.')
     successToast('Purchase is successful.')
-    await clearCart()
+
+    onPurchase(chosenMethod, chosenAddress)
+
     setChosenMethod({})
     setChosenAddress({})
-    onPurchase()
   }
 
   return (

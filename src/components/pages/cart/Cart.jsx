@@ -4,14 +4,32 @@ import LoadingPage from '../../ui/LoadingPage'
 import WhiteBtn from '../../ui/WhiteBtn'
 import { Link } from 'react-router-dom'
 import PurchaseDetails from './PurchaseDetails'
+import supabase from '../../../tools/supabase'
 
 const Cart = () => {
-    const {cartProducts, fetchCart, isCartLoading, removeFromCart, decrementCart, localLoading, incrementCart, getTotal} = useCart()
+    const {cartProducts, fetchCart, isCartLoading, removeFromCart, decrementCart, localLoading, incrementCart, getTotal, clearCart} = useCart()
 
     useEffect(() => {
         fetchCart()
         window.scrollTo(0,0)
     }, [])
+
+    const onPurchase = async (chosenMethod, chosenAddress) => {
+        const {error} = await supabase
+        .from('orders')
+        .insert([{
+            payment_method: chosenMethod.method,
+            payment_id: chosenMethod.method_id,
+            shipping_address: chosenAddress.address,
+            price: getTotal().total + getTotal().shipping,
+            products: cartProducts.map(product => (`${product.id}/${product.quantity}`)),
+        }])
+
+        if(error) return console.error(error)
+
+        await clearCart()
+        await fetchCart()
+    }
 
   return (
     <div className='relative w-[90%] md:w-[80%] mx-auto mt-20 CART'>
@@ -37,7 +55,7 @@ const Cart = () => {
                         </div>
                     ))}
                 </div>
-                <PurchaseDetails total={getTotal().total} shipping={getTotal().shipping} onPurchase={fetchCart} />
+                <PurchaseDetails total={getTotal().total} shipping={getTotal().shipping} onPurchase={onPurchase} />
             </div>
             ) : (
             <div className='flex flex-col gap-3 items-center justify-center'>

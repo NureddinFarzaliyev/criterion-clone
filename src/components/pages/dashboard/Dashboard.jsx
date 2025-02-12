@@ -12,6 +12,7 @@ import { MdOutlineAttachMoney } from "react-icons/md";
 
 // Dashboard Pages
 import Home from './Home'
+import Orders from './Orders'
 
 const Dashboard = () => {
     const { getUser, isLoading } = useAuth()
@@ -39,7 +40,7 @@ const Dashboard = () => {
         <Home />,
         <h1>Blog</h1>,
         <h1>Products</h1>,
-        <h1>Orders</h1>,
+        <Orders />,
     ]
 
     return (
@@ -55,8 +56,8 @@ const Dashboard = () => {
                                 <Tab as={Fragment}>
                                     {({ hover, selected }) => (
                                         <button key={index}
-                                            className={`bg-black/10 py-3 px-6 w-40 transition duration-300 outline-none flex items-center gap-3 rounded-full text-sm font-display uppercase cursor-pointer
-                                    ${hover && !selected && 'bg-black/40'} ${selected && 'bg-black/70 shadow-lg scale-105'}`}>
+                                            className={` py-3 px-6 w-40 transition duration-300 outline-none text-white flex items-center gap-3 rounded-full text-sm font-display uppercase cursor-pointer
+                                            ${hover && !selected && 'dark:bg-black/40'} ${selected ? 'dark:bg-black/70 bg-gray shadow-lg scale-105' : 'dark:bg-black/10 bg-gray/70'}`}>
                                             {tab}
                                         </button>
                                     )}
