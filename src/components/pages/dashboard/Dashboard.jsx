@@ -1,15 +1,25 @@
-import React, { useEffect } from 'react'
+import { Tab, TabGroup, TabList, TabPanel, TabPanels } from '@headlessui/react'
+import React, { Fragment, useEffect } from 'react'
 import GeneralSection from '../../ui/GeneralSection'
 import LoadingPage from '../../ui/LoadingPage'
 import useAuth from '../../../hooks/useAuth'
 
+// Icons
+import { FaPenNib } from "react-icons/fa";
+import { GoHomeFill } from "react-icons/go";
+import { FaBoxOpen } from "react-icons/fa6";
+import { MdOutlineAttachMoney } from "react-icons/md";
+
+// Dashboard Pages
+import Home from './Home'
+
 const Dashboard = () => {
-    const {getUser, isLoading} = useAuth()
+    const { getUser, isLoading } = useAuth()
 
     const fetchUser = async () => {
         const user = await getUser()
 
-        if(!user || user.user_metadata.role !== "admin") {
+        if (!user || user.user_metadata.role !== "admin") {
             window.location.href = "/"
         }
     }
@@ -18,13 +28,53 @@ const Dashboard = () => {
         fetchUser()
     }, [])
 
+    const tabs = [
+        <><GoHomeFill /><h1>Home</h1></>,
+        <><FaPenNib /><h1>Blog</h1></>,
+        <><FaBoxOpen /><h1>Products</h1></>,
+        <><MdOutlineAttachMoney /><h1>Orders</h1></>,
+    ]
+
+    const pages = [
+        <Home />,
+        <h1>Blog</h1>,
+        <h1>Products</h1>,
+        <h1>Orders</h1>,
+    ]
+
     return (
         <GeneralSection>
-        <LoadingPage isLoading={isLoading}>
+            <LoadingPage isLoading={isLoading}>
+                <div className='w-[90%] md:w-[70%] mx-auto'>
 
-            <h1>Dashboard</h1>
+                    <h1 className='mt-10 font-display text-3xl opacity-50 mb-5'>DASHBOARD</h1>
 
-        </LoadingPage>
+                    <TabGroup defaultIndex={0}>
+                        <TabList className={`flex gap-4 flex-wrap`}>
+                            {tabs.map((tab, index) => (
+                                <Tab as={Fragment}>
+                                    {({ hover, selected }) => (
+                                        <button key={index}
+                                            className={`bg-black/10 py-3 px-6 w-40 transition duration-300 outline-none flex items-center gap-3 rounded-full text-sm font-display uppercase cursor-pointer
+                                    ${hover && !selected && 'bg-black/40'} ${selected && 'bg-black/70 shadow-lg scale-105'}`}>
+                                            {tab}
+                                        </button>
+                                    )}
+                                </Tab>
+                            ))}
+                        </TabList>
+
+                        <TabPanels className='mt-14'>
+                            {pages.map((page, index) => (
+                                <TabPanel key={index}>
+                                    {page}
+                                </TabPanel>
+                            ))}
+                        </TabPanels>
+                    </TabGroup>
+
+                </div>
+            </LoadingPage>
         </GeneralSection>
     )
 }
