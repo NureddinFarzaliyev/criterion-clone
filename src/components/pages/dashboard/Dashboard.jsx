@@ -11,9 +11,9 @@ import { FaBoxOpen } from "react-icons/fa6";
 import { MdOutlineAttachMoney } from "react-icons/md";
 
 // Dashboard Pages
-import Home from './Home'
-import Orders from './Orders'
-import Blogs from './DashBlogs'
+import Home from './dashHome/Home'
+import Orders from './dashOrders/Orders'
+import Blogs from './dashBlogs/DashBlogs'
 
 const Dashboard = () => {
     const { getUser, isLoading } = useAuth()

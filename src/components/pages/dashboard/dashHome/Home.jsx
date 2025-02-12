@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react'
-import { fetchStatistics } from '../../../features/dashboard/dashboard'
+import { fetchStatistics } from '../../../../features/dashboard/dashboard'
 import { useDispatch, useSelector } from 'react-redux'
-import LoadingPage from '../../ui/LoadingPage'
+import LoadingPage from '../../../ui/LoadingPage'
 import StatisticsLinear from './StatisticsLinear'
 import StatisticsGroup from './StatisticsGroup'
 

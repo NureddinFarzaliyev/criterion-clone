@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react'
-import { fetchOrdersData } from '../../../features/dashboard/dashboard'
+import { fetchOrdersData } from '../../../../features/dashboard/dashboard'
 import { useDispatch, useSelector } from 'react-redux'
 import { LuRefreshCcw } from "react-icons/lu";
 

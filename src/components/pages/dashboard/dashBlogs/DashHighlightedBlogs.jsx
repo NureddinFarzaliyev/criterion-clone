@@ -1,15 +1,15 @@
 import { useEffect, useState } from 'react'
-import useBlog from '../../../hooks/useBlog'
+import useBlog from '../../../../hooks/useBlog'
 import { RxCross1 } from "react-icons/rx";
 import { Link } from 'react-router-dom';
-import { addHighlightedBlog, removeHighlightedBlog } from '../../../features/blog/highlightedBlogs';
+import { addHighlightedBlog, removeHighlightedBlog } from '../../../../features/blog/highlightedBlogs';
 import { useDispatch } from 'react-redux';
-import supabase from '../../../tools/supabase';
-import { errorToast } from '../../../utils/toast';
+import supabase from '../../../../tools/supabase';
+import { errorToast } from '../../../../utils/toast';
 import { FiPlus } from "react-icons/fi";
 import { Dialog, DialogPanel, DialogBackdrop } from '@headlessui/react';
 import { FaMagnifyingGlass } from 'react-icons/fa6';
-import spinner from '../../../assets/images/spinner-black.svg';
+import spinner from '../../../../assets/images/spinner-black.svg';
 
 const DashHighlightedBlogs = () => {
     const { highlightedBlogs, getHighlightedBlogs, isLoading } = useBlog()
@@ -100,7 +100,7 @@ const DashHighlightedBlogs = () => {
             className="fixed inset-0 flex w-screen items-center justify-center z-50 p-4 transition duration-300 ease-out data-[closed]:opacity-0">
                 <DialogBackdrop className="fixed inset-0 bg-black/60"  />
                 <div className="fixed inset-0 flex w-screen items-center justify-center p-4">
-                <DialogPanel className="min-w-lg max-h-96 text-sm space-y-4 bg-white p-5">
+                <DialogPanel className="md:min-w-lg max-h-96 text-sm space-y-4 bg-white p-5">
                     <h1 className='font-display opacity-70 uppercase'>choose a blog post to highlight</h1>
                     <form onSubmit={handleSearch} className='relative'>
                         <input type="text" name="search" id="" placeholder='SEARCH...'  className='font-display bg-gray/20 p-3 w-full accent-gold' />

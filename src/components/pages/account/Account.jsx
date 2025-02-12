@@ -45,7 +45,7 @@ const Account = () => {
     }
 
   return (
-    <div className="w-[70%] mx-auto mt-10">
+    <div className="w-[90%] md:w-[70%] mx-auto mt-10">
         <h1 className="font-text text-xl md:text-4xl mb-14 max-md:text-center">{user?.email}</h1>
         <div className="flex max-md:flex-col max-md:items-center gap-5">
             {role === 'admin' && <Link className='h-14 w-48 bg-gray dark:bg-white text-white dark:text-gray hover:scale-110 transition-all duration-400 shadow-lg flex items-center justify-center font-display font-bold'  to='/dashboard'> <RxDashboard className='text-2xl mt-[-3px] mr-2' /> DASHBOARD</Link>}
