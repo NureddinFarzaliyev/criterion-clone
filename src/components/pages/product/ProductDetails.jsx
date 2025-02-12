@@ -36,7 +36,7 @@ const ProductDetails = ({singleProduct}) => {
                 </div>
 
                 <p className='font-display dark:opacity-60 opacity-90 text-sm mb-2 mt-10 lg:mt-20'>PURCHASE & SHIPPING DETAILS</p>
-                <p className='dark:opacity-60 opacity-90 font-text text-md lg:pr-10'>&emsp;&emsp; Your movie will be shipped as a 4K Blu-Ray with high-quality packaging. Our products are shipped within 10-14 business days. We offer free shipping on orders over $50. For international orders, additional shipping charges may apply. If you have any questions about your order, please contact our customer service team at support@criterion.com.</p>
+                <p className='dark:opacity-60 opacity-90 font-text text-md lg:pr-10'>&emsp;&emsp; Your movie will be shipped as a 4K Blu-Ray with high-quality packaging. Our products are shipped within 10-14 business days. We offer free shipping on orders over $250. For international orders, additional shipping charges may apply. If you have any questions about your order, please contact our customer service team at support@criterion.com.</p>
             </div>
         )}
     </div>

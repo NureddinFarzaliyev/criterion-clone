@@ -12,9 +12,9 @@ const useAuth = () => {
         return user
     }, [])
 
-    const register = useCallback(async (email, password, payload) => {
+    const register = useCallback(async (email, password, role) => {
         setIsLoading(true)
-        let { data, error } = await supabase.auth.signUp({email, password, payload})
+        let { data, error } = await supabase.auth.signUp({email, password, options: { data: { role } }})
         setIsLoading(false)
         if(error) {
             setError(error.message)

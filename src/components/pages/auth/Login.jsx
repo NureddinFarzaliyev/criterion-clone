@@ -33,7 +33,7 @@ const Login = () => {
         if(response) {
             successToast("Logged in successfully")
             navigate("/")
-            dispatch(setAuth({isAuthenticated: true, userId: response.user.id}))
+            dispatch(setAuth({isAuthenticated: true, userId: response.user.id, role: response.user.user_metadata.role}))
         }
     }
 

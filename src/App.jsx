@@ -23,6 +23,7 @@ import Wishlist from './components/pages/account/Wishlist'
 import Search from './components/pages/search/Search'
 import Cart from './components/pages/cart/Cart'
 import CheckAuth from './components/protected/CheckAuth'
+import Dashboard from './components/pages/dashboard/Dashboard'
 
 const App = () => {
   const location = useLocation()
@@ -46,6 +47,7 @@ const App = () => {
         <Route path="/verify" element={<HideFromLoggedin children={<PleaseVerify />} />} />
         <Route path="/search" element={<Search />} />
         <Route path="/cart" element={<HideFromNotLogged children={<Cart />} />} />
+        <Route path="/dashboard" element={<Dashboard />} />
 
         <Route path="*" element={<NotFound />} />
       </Routes>

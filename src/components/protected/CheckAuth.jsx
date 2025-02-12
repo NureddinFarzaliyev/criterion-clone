@@ -21,8 +21,8 @@ const CheckAuth = () => {
                 console.error(error)
                 return
             }
-            
-            dispatch(setAuth({isAuthenticated: true, userId: data.user.id}))
+
+            dispatch(setAuth({isAuthenticated: true, userId: data.user.id, role: data.user.user_metadata.role}))
             dispatch(setLoading(false))
         }
         checkUser()

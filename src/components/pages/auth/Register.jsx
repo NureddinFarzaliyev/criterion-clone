@@ -24,7 +24,7 @@ const Register = () => {
     const handleRegister = async (e) => {
         e.preventDefault()
         if(user.password !== user.repeat) return errorToast("Passwords do not match.")
-        const response = await register(user.email, user.password)
+        const response = await register(user.email, user.password, "user")
 
         if(response) {
             successToast("Registered successfully")
