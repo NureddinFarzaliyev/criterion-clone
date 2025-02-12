@@ -37,7 +37,7 @@ return (
     <div className="overflow-x-auto">
         <table className="min-w-full font-display">
             <thead className='relative'>
-                <button className='absolute top-[50%] translate-y-[-50%] right-0  rounded-sm  shadow-lg cursor-pointer p-3 font-display uppercase text-lg mb-3 opacity-70 transition duration-500' onClick={() => {dispatch(fetchOrdersData())}}><LuRefreshCcw /></button>
+                <button className='text-white absolute top-[50%] translate-y-[-50%] right-0  rounded-sm  shadow-lg cursor-pointer p-3 font-display uppercase text-lg mb-3 opacity-70 transition duration-500' onClick={() => {dispatch(fetchOrdersData())}}><LuRefreshCcw /></button>
                 <tr>
                     <TH>Order ID</TH>
                     <TH>Date & Time</TH>
