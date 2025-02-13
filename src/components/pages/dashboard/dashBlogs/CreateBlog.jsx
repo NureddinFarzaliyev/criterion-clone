@@ -5,12 +5,14 @@ import InputGroup from './InputGroup'
 import spinner from '../../../../assets/images/spinner.svg'
 import supabase from '../../../../tools/supabase'
 import { errorToast, successToast } from '../../../../utils/toast'
+import useBlog from '../../../../hooks/useBlog'
 
 const CreateBlog = () => {
     const [isOpen, setIsOpen] = useState(false)
     const [paragraphs, setParagraphs] = useState([])
     const [isLoading, setIsLoading] = useState(false)
     const form = useRef(null)
+    const {getBlogs} = useBlog()
 
     const handlePublish = async (e) => {
         e.preventDefault()
@@ -24,6 +26,10 @@ const CreateBlog = () => {
             }
         }
         formData.paragraphs = paragraphs
+
+        if(!formData.title || !formData.author || !formData.cover || paragraphs.length === 0) {
+            return errorToast('Please fill all fields')
+        }
 
         setIsLoading(true)
 
@@ -39,6 +45,7 @@ const CreateBlog = () => {
         setIsLoading(false)
         setIsOpen(false)
         setParagraphs([])
+        getBlogs()
         successToast('Blog post published successfully!')
     }
 
@@ -67,7 +74,7 @@ const CreateBlog = () => {
                                     <textarea key={index} name={`paragraph${index}`} id={`paragraph${index}`} className='w-full bg-light-gray text-white p-2 my-2 accent-gold font-text text-md min-h-20' />   
                                 </div>                             
                             ))}
-                            <div onClick={() => { setParagraphs([...paragraphs, '']) }} className='h-12 mt-4 shadow-lg border-2 dark:border-white border-gray opacity-15 hover:opacity-40 transition duration-300 flex items-center justify-center text-3xl cursor-pointer'>
+                            <div onClick={() => { setParagraphs([...paragraphs, '']) }} className='h-12 mt-4 shadow-lg border-2 border-white opacity-15 hover:opacity-40 transition duration-300 flex items-center justify-center text-3xl cursor-pointer'>
                                 <FiPlus />
                             </div>
                             

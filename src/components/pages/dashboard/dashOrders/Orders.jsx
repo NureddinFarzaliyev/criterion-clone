@@ -2,6 +2,7 @@ import React, { useEffect } from 'react'
 import { fetchOrdersData } from '../../../../features/dashboard/dashboard'
 import { useDispatch, useSelector } from 'react-redux'
 import { LuRefreshCcw } from "react-icons/lu";
+import { TH, TD, TR } from '../../../ui/Table'
 
 const Orders = () => {
     const dispatch = useDispatch()
@@ -12,26 +13,6 @@ const Orders = () => {
             dispatch(fetchOrdersData())
         }
     }, [])
-    
-    console.log(ordersData)
-
-    const TH = ({children}) => {
-        return (
-            <th className="py-3 px-4 dark:bg-black/50 bg-gray text-white text-left font-text">{children}</th>
-        )
-    }
-
-    const TD = ({children}) => {
-        return (
-            <td className="py-4 px-4 border-b border-b-white/20 text-sm opacity-70">{children}</td>
-        )
-    }
-
-    const TR = ({children}) => {
-        return (
-            <tr className="hover:bg-gray/20 dark:hover:bg-black/20 transition">{children}</tr>
-        )
-    }
 
 return (
     <div className="overflow-x-auto">

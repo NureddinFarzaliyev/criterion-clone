@@ -22,6 +22,15 @@ const blogSlice = createSlice({
     name: 'blog',
     initialState, 
 
+    reducers: {
+        addBlog: (state, action) => {
+            state.blogs.push(action.payload)
+        },
+        removeBlog: (state, action) => {
+            state.blogs = state.blogs.filter(blog => blog.id !== action.payload)
+        }
+    },
+
     extraReducers: (builder) => {
         builder.addCase(fetchBlogs.fulfilled, (state, action) => {
             state.blogs = action.payload
@@ -38,4 +47,5 @@ const blogSlice = createSlice({
     }
 })
 
+export const { addBlog, removeBlog } = blogSlice.actions
 export default blogSlice.reducer

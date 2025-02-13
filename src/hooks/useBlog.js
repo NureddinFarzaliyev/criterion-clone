@@ -1,12 +1,15 @@
 import { useDispatch, useSelector } from "react-redux"
 import { fetchHighlightedBlogs } from "../features/blog/highlightedBlogs"
-import { fetchBlogs } from "../features/blog/blog"
+import { fetchBlogs, addBlog, removeBlog } from "../features/blog/blog"
 import { useEffect, useState, useCallback } from "react"
+import supabase from "../tools/supabase"
+import { successToast } from "../utils/toast"
 
 const useBlog = () => {
     const dispatch = useDispatch()
 
     const [isLoading, setIsLoading] = useState(false)
+    const [isLocalLocading, setIsLocalLoading] = useState(false)
     const [error, setError] = useState(null)
 
     const highlightedBlogs = useSelector(state => state.highlightedBlogs.blogs)
@@ -32,8 +35,32 @@ const useBlog = () => {
     }, [dispatch])
 
     const getBlogs = useCallback(async () => {
+        console.log("BLOGS FETCHED")
         dispatch(fetchBlogs())
     }, [dispatch])
+
+    const addPost = useCallback((post) => {
+        dispatch(addBlog(post))
+    })
+
+    const removePost = useCallback(async (id) => {
+        setIsLocalLoading(true)
+
+        const {error} = await supabase
+        .from('blog')
+        .delete()
+        .eq('id', id)
+
+        setIsLocalLoading(false)
+
+        if (error) {
+            setError(error)
+            return
+        }
+
+        dispatch(removeBlog(id))
+        successToast('Post deleted successfully')
+    })
 
     return {
         getHighlightedBlogs,
@@ -41,7 +68,10 @@ const useBlog = () => {
         getBlogs,
         blogs,
         isLoading,
-        error
+        isLocalLocading,
+        error,
+        addPost,
+        removePost
     }
 }
 
