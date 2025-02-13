@@ -6,6 +6,8 @@ import spinner from '../../../../assets/images/spinner.svg'
 import supabase from '../../../../tools/supabase'
 import { errorToast, successToast } from '../../../../utils/toast'
 import useBlog from '../../../../hooks/useBlog'
+import ParagraphTextArea from './ParagraphTextArea'
+import { createParagraphsArray } from '../../../../utils/createParagraphsArray'
 
 const CreateBlog = () => {
     const [isOpen, setIsOpen] = useState(false)
@@ -17,17 +19,9 @@ const CreateBlog = () => {
     const handlePublish = async (e) => {
         e.preventDefault()
         const formData = Object.fromEntries(new FormData(form.current))
+        formData.paragraphs = createParagraphsArray(formData)
 
-        let paragraphs = []
-        for (let key in formData) {
-            if (key.includes('paragraph')) {
-                paragraphs.push(formData[key])
-                delete formData[key]
-            }
-        }
-        formData.paragraphs = paragraphs
-
-        if(!formData.title || !formData.author || !formData.cover || paragraphs.length === 0) {
+        if(!formData.title || !formData.author || !formData.cover || formData.paragraphs.length === 0) {
             return errorToast('Please fill all fields')
         }
 
@@ -37,14 +31,15 @@ const CreateBlog = () => {
             .from('blog')
             .insert([formData])
 
+        setIsLoading(false)
+        setIsOpen(false)
+        setParagraphs([])
+
         if (error){
             console.log(error)
             return errorToast('Failed to publish blog post')
         }
-
-        setIsLoading(false)
-        setIsOpen(false)
-        setParagraphs([])
+        
         getBlogs()
         successToast('Blog post published successfully!')
     }
@@ -60,7 +55,7 @@ const CreateBlog = () => {
                 className="fixed inset-0 flex w-screen items-center justify-center z-50 p-4 transition duration-300 ease-out data-[closed]:opacity-0">
                 <DialogBackdrop className="fixed inset-0 bg-black/60" />
                 <div className="fixed inset-0 flex w-screen items-center justify-center p-4">
-                    <DialogPanel className="md:w-lg max-h-[80vh] overflow-y-scroll text-sm space-y-4 bg-gray text-white p-5">
+                    <DialogPanel className="md:w-[50vw] max-h-[80vh] overflow-y-scroll text-sm space-y-4 bg-gray text-white p-5">
                         <p className='font-display uppercase my-5 opacity-60'>publish new blog post</p>
                         <form ref={form} >
                             <InputGroup name='title' />
@@ -68,12 +63,8 @@ const CreateBlog = () => {
                             <InputGroup name='cover' />
 
                             <p className='font-display uppercase my-5 opacity-60'>Paragraphs</p>
-                            {paragraphs.map((_, index) => (
-                                <div key={index}>
-                                    <label htmlFor={`paragraph${index}`} className='font-display uppercase opacity-50 text-xs'>Paragraph {index + 1}</label>
-                                    <textarea key={index} name={`paragraph${index}`} id={`paragraph${index}`} className='w-full bg-light-gray text-white p-2 my-2 accent-gold font-text text-md min-h-20' />   
-                                </div>                             
-                            ))}
+                            {paragraphs.map((_, index) => <ParagraphTextArea index={index} key={index} />)}
+
                             <div onClick={() => { setParagraphs([...paragraphs, '']) }} className='h-12 mt-4 shadow-lg border-2 border-white opacity-15 hover:opacity-40 transition duration-300 flex items-center justify-center text-3xl cursor-pointer'>
                                 <FiPlus />
                             </div>

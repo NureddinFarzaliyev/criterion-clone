@@ -11,6 +11,7 @@ export const fetchBlogs = createAsyncThunk('blog/fetchBlogs', async () => {
     const { data, error } = await supabase
         .from('blog')
         .select('*')
+        .order('id', {ascending: false})
     if (error) {
         return
     }

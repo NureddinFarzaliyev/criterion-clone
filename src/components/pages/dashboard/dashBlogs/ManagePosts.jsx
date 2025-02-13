@@ -4,7 +4,7 @@ import { LuRefreshCcw } from 'react-icons/lu'
 import useBlog from '../../../../hooks/useBlog'
 import LoadingPage from '../../../ui/LoadingPage'
 import { CgExternal } from 'react-icons/cg'
-import { FaPenNib } from "react-icons/fa";
+import EditBlog from './EditBlog'
 import DeleteBlog from './DeleteBlog'
 
 const ManagePosts = () => {
@@ -48,7 +48,7 @@ const ManagePosts = () => {
                     <CgExternal className='text-3xl hover:text-gold opacity-70 hover:opacity-100 transition cursor-pointer' />
                   </a>
                 </TD>
-                <TD><FaPenNib className='text-xl hover:text-gold opacity-70 hover:opacity-100 transition cursor-pointer' /></TD>
+                <TD><EditBlog blog={blog} /></TD>
                 <TD><DeleteBlog id={blog.id} /></TD>
               </TR>
             ))}

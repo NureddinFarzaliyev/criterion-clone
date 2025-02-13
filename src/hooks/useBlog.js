@@ -62,6 +62,27 @@ const useBlog = () => {
         successToast('Post deleted successfully')
     })
 
+    const editPost = useCallback(async (id, post) => {
+
+        console.log(post)
+
+        setIsLocalLoading(true)
+
+        const {error} = await supabase
+        .from('blog')
+        .update(post)
+        .eq('id', id)
+
+        setIsLocalLoading(false)
+
+        if (error) {
+            setError(error)
+            return
+        }
+
+        successToast('Post updated successfully')
+    })
+
     return {
         getHighlightedBlogs,
         highlightedBlogs,
@@ -71,7 +92,8 @@ const useBlog = () => {
         isLocalLocading,
         error,
         addPost,
-        removePost
+        removePost,
+        editPost
     }
 }
 
