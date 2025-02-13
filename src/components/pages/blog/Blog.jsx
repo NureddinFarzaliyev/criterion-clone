@@ -58,7 +58,7 @@ const Blog = () => {
                                     <span className='font-display font-bold text-sm opacity-70'>{blog.author}</span>
                                 </div>
                             </Link>
-                        ))}
+                        )).reverse()}
                     </div>
                 </section>
             </LoadingPage>

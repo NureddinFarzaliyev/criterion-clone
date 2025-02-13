@@ -4,6 +4,8 @@ import supabase from '../../../tools/supabase'
 import { errorToast } from '../../../utils/toast'
 import GeneralSection from '../../ui/GeneralSection'
 import BigLetter from '../../ui/BigLetter'
+import RecommendedPosts from '../product/RecommendedPosts'
+import RecommendedProducts from '../product/RecommendedProducts'
 
 const Post = () => {
   const {id} = useParams()
@@ -52,6 +54,8 @@ const Post = () => {
           </>
         )}
       </div>
+      <RecommendedPosts />
+      <RecommendedProducts />
     </GeneralSection>
   )
 }
