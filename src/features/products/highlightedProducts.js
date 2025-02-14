@@ -24,6 +24,15 @@ const highlightedProductsSlice = createSlice({
     name: 'highlightedProducts',
     initialState,
 
+    reducers: {
+        removeProduct: (state, action) => {
+            state.products = state.products.filter(product => product.id !== action.payload)
+        },
+        addProduct: (state, action) => {
+            state.products.push(action.payload)
+        }
+    },
+
     extraReducers: (builder) => {
         builder.addCase(fetchHighlightedProducts.fulfilled, (state, action) => {
             state.products = action.payload
@@ -40,4 +49,5 @@ const highlightedProductsSlice = createSlice({
     }
 })
 
+export const { removeProduct, addProduct } = highlightedProductsSlice.actions
 export default highlightedProductsSlice.reducer

@@ -14,6 +14,7 @@ import { MdOutlineAttachMoney } from "react-icons/md";
 import Home from './dashHome/Home'
 import Orders from './dashOrders/Orders'
 import Blogs from './dashBlogs/DashBlogs'
+import Products from './dashProducts/DashProducts'
 
 const Dashboard = () => {
     const { getUser, isLoading } = useAuth()
@@ -40,7 +41,7 @@ const Dashboard = () => {
     const pages = [
         <Home />,
         <Blogs />,
-        <h1>Products</h1>,
+        <Products />,
         <Orders />,
     ]
 

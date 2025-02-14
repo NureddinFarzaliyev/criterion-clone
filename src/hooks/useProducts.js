@@ -1,6 +1,6 @@
 import { useCallback, useState } from "react"
 import { useSelector, useDispatch } from "react-redux"
-import { setProducts, setError, setLoading, setTotalPages, setIsPagination } from "../features/products/products"
+import { setProducts, setDashboardProducts, setError, setLoading, setTotalPages, setIsPagination } from "../features/products/products"
 import supabase from "../tools/supabase"
 import { useSearchParams } from "react-router-dom"
 
@@ -10,7 +10,7 @@ const useProducts = () => {
     
     const [searchParams, _] = useSearchParams();
 
-    const getProducts = useCallback(async (page) => {
+    const getProducts = useCallback(async (page, isDashboard) => {
         dispatch(setLoading(true))
         
         const {data, error} = await supabase
@@ -28,7 +28,12 @@ const useProducts = () => {
             return 
         }
 
-        dispatch(setProducts(data))
+        if(isDashboard){
+            dispatch(setDashboardProducts(data))
+        }else{
+            dispatch(setProducts(data))
+        }
+        
         dispatch(setTotalPages(Math.ceil(count / 20)))
         dispatch(setIsPagination(true))
         dispatch(setLoading(false))

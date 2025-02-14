@@ -1,6 +1,8 @@
 import { useDispatch, useSelector } from "react-redux"
-import { fetchHighlightedProducts } from "../features/products/highlightedProducts"
+import { addProduct, fetchHighlightedProducts, removeProduct } from "../features/products/highlightedProducts"
 import { useCallback, useEffect, useState } from "react"
+import { errorToast } from "../utils/toast"
+import supabase from "../tools/supabase"
 
 const useHighlightedProducts = () => {
     const dispatch = useDispatch()
@@ -26,10 +28,42 @@ const useHighlightedProducts = () => {
         dispatch(fetchHighlightedProducts())
     }, [dispatch])
 
+    const removeHighlightedProduct = useCallback(async (id) => {
+        dispatch(removeProduct(id))
+
+        const {error} = await supabase
+            .from('products')
+            .update({isHighlighted: false})
+            .eq('id', id)
+
+        if (error) {
+            dispatch(addProduct(id))
+            errorToast('Could not remove product from highlighted')
+            return console.error(error)
+        }
+    })
+
+    const addHighlightedProduct = useCallback(async (product) => {
+        dispatch(addProduct(product))
+
+        const {error} = await supabase
+            .from('products')
+            .update({isHighlighted: true})
+            .eq('id', product.id)
+
+        if (error) {
+            dispatch(removeProduct(product.id))
+            errorToast('Could not add product to highlighted')
+            return console.error(error)
+        }
+    })
+
 
     return {
         getHighlightedProducts,
         highlightedProducts,
+        removeHighlightedProduct,
+        addHighlightedProduct,
         isLoading,
         error
     }
