@@ -22,7 +22,7 @@ const DashHighlightedProducts = () => {
 
         {highlightedProducts.map((product, index) => (
           <div key={index} className='relative shadow-lg'>
-            <button onClick={() => { removeHighlightedProduct(product.id) }} className='cursor-pointer absolute right-0 bg-white text-black z-50 text-2xl m-3 p-2 opacity-50 hover:opacity-100 transition duration-500'><RxCross1 /></button>
+            <button onClick={() => { removeHighlightedProduct(product.id) }} className='cursor-pointer absolute right-0 bg-white text-black z-0 text-2xl m-3 p-2 opacity-50 hover:opacity-100 transition duration-500'><RxCross1 /></button>
             <img src={product.cover_small} alt={product.title} />
           </div>
         ))}
