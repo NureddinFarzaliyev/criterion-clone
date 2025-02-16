@@ -3,10 +3,11 @@ import { useSelector, useDispatch } from "react-redux"
 import { setProducts, setDashboardProducts, setError, setLoading, setTotalPages, setIsPagination, setDashCurrentPage } from "../features/products/products"
 import supabase from "../tools/supabase"
 import { useSearchParams } from "react-router-dom"
+import { successToast } from "../utils/toast"
 
 const useProducts = () => {
     const dispatch = useDispatch()
-    const {products, isLoading, error, dashCurrentPage} = useSelector(state => state.products)
+    const {products, isLoading, error, dashCurrentPage, dashboardProducts} = useSelector(state => state.products)
     
     const [searchParams, _] = useSearchParams();
     
@@ -110,11 +111,29 @@ const useProducts = () => {
             return
         }
 
-        getProducts(dashCurrentPage || 1, true)
+        dispatch(setDashboardProducts(dashboardProducts.filter(product => product.id !== id)))
+    })
+
+    const editProduct = useCallback(async (id, data, onEdit) => {
+        setLocalLoading(true)
+        const {error} = await supabase
+            .from('products')
+            .update(data)
+            .eq('id', id)
+
+        setLocalLoading(false)
+
+        if(error){
+            dispatch(setError(error.message))
+            return
+        }
+
+        dispatch(setDashboardProducts(dashboardProducts.map(product => product.id === id ? {...product, ...data} : product)))
+        onEdit()
     })
 
 
-    return {getProducts, products, isLoading, error, getFilteredProducts, getSingleProduct, isProductLoading, productError, singleProduct, changeDashboardCurrentPage, deleteProduct, localLoading}
+    return {getProducts, editProduct,  products, isLoading, error, getFilteredProducts, getSingleProduct, isProductLoading, productError, singleProduct, changeDashboardCurrentPage, deleteProduct, localLoading}
 }
 
 export default useProducts

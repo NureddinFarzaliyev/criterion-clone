@@ -7,6 +7,7 @@ import useProducts from '../../../../hooks/useProducts'
 import { useSelector } from 'react-redux'
 import { GoChevronLeft, GoChevronRight } from 'react-icons/go'
 import DeleteProduct from './DeleteProduct'
+import EditProduct from './EditProduct'
 
 const DashManageProducts = () => {
     const { isLoading, getProducts, changeDashboardCurrentPage } = useProducts()
@@ -61,7 +62,7 @@ const DashManageProducts = () => {
                                         <CgExternal className='text-3xl hover:text-gold opacity-70 hover:opacity-100 transition cursor-pointer' />
                                     </a>
                                 </TD>
-                                <TD>edit</TD>
+                                <TD><EditProduct product={product} /></TD>
                                 <TD><DeleteProduct id={product.id} /></TD>
                             </TR>
                         ))}
