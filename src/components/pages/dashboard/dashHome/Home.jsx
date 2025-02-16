@@ -29,15 +29,15 @@ const Home = () => {
       <div className='grid lg:grid-cols-2 2xl:grid-cols-3 gap-10 my-20'>
         <div>
           <p className='font-display uppercase mb-5 text-sm mt-2 opacity-60'>Today</p>
-          <StatisticsLinear data={statistics?.orders_last_day.map(item => ({...item, date: new Date(item.date).toLocaleDateString()}))} />
+          <StatisticsLinear data={statistics?.orders_last_day?.map(item => ({...item, date: new Date(item.date).toLocaleDateString()}))} />
         </div>
         <div>
           <p className='font-display uppercase mb-5 text-sm mt-2 opacity-60'>Last Week</p>
-          <StatisticsLinear data={statistics?.orders_last_week.map(item => ({...item, date: new Date(item.date).toLocaleDateString()}))} />
+          <StatisticsLinear data={statistics?.orders_last_week?.map(item => ({...item, date: new Date(item.date).toLocaleDateString()}))} />
         </div>
         <div>
           <p className='font-display uppercase mb-5 text-sm mt-2 opacity-60'>Last Month</p>
-          <StatisticsLinear data={statistics?.orders_last_month.map(item => ({...item, date: new Date(item.date).toLocaleDateString()}))} />
+          <StatisticsLinear data={statistics?.orders_last_month?.map(item => ({...item, date: new Date(item.date).toLocaleDateString()}))} />
         </div>
       </div>
 

@@ -1,14 +1,16 @@
 import { useCallback, useState } from "react"
 import { useSelector, useDispatch } from "react-redux"
-import { setProducts, setDashboardProducts, setError, setLoading, setTotalPages, setIsPagination } from "../features/products/products"
+import { setProducts, setDashboardProducts, setError, setLoading, setTotalPages, setIsPagination, setDashCurrentPage } from "../features/products/products"
 import supabase from "../tools/supabase"
 import { useSearchParams } from "react-router-dom"
 
 const useProducts = () => {
     const dispatch = useDispatch()
-    const {products, isLoading, error} = useSelector(state => state.products)
+    const {products, isLoading, error, dashCurrentPage} = useSelector(state => state.products)
     
     const [searchParams, _] = useSearchParams();
+    
+    const [localLoading, setLocalLoading] = useState(false)
 
     const getProducts = useCallback(async (page, isDashboard) => {
         dispatch(setLoading(true))
@@ -17,6 +19,7 @@ const useProducts = () => {
             .from('products')
             .select('*')
             .range((page - 1) * 20, page * 20 - 1)
+            .order('id', {ascending: false})
 
         const {count, countError} = await supabase
             .from('products')
@@ -89,8 +92,29 @@ const useProducts = () => {
         return data
     }, [])
 
+    const changeDashboardCurrentPage = useCallback((page) => {
+        dispatch(setDashCurrentPage(page))
+    })
 
-    return {getProducts, products, isLoading, error, getFilteredProducts, getSingleProduct, isProductLoading, productError, singleProduct}
+    const deleteProduct = useCallback(async (id) => {
+        setLocalLoading(true)
+        const {error} = await supabase
+            .from('products')
+            .delete()
+            .eq('id', id)
+
+        setLocalLoading(false)
+
+        if(error){
+            dispatch(setError(error.message))
+            return
+        }
+
+        getProducts(dashCurrentPage || 1, true)
+    })
+
+
+    return {getProducts, products, isLoading, error, getFilteredProducts, getSingleProduct, isProductLoading, productError, singleProduct, changeDashboardCurrentPage, deleteProduct, localLoading}
 }
 
 export default useProducts

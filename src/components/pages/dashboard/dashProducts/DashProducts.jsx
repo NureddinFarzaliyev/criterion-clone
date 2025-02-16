@@ -1,5 +1,6 @@
 import DashHighlightedProducts from './DashHighlightedProducts'
 import DashAddProduct from './DashAddProduct'
+import DashManageProducts from './DashManageProducts'
 
 const Products = () => {
 
@@ -7,6 +8,7 @@ const Products = () => {
     <div>
       <DashHighlightedProducts />
       <DashAddProduct />
+      <DashManageProducts />
     </div>
   )
 }

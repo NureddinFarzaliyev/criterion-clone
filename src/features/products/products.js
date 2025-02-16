@@ -6,7 +6,8 @@ const initialState = {
     isLoading: false,
     error: null,
     totalPages: 0,
-    isPagination: false
+    isPagination: false,
+    dashCurrentPage: 1
 }
 
 const productsSlice = createSlice({
@@ -31,10 +32,13 @@ const productsSlice = createSlice({
         },
         setIsPagination: (state, action) => {
             state.isPagination = action.payload
+        },
+        setDashCurrentPage: (state, action) => {
+            state.dashCurrentPage = action.payload
         }
     }
 })
 
 
-export const { setProducts, setLoading, setError, setTotalPages, setIsPagination, setDashboardProducts } = productsSlice.actions;
+export const { setProducts, setLoading, setError, setTotalPages, setIsPagination, setDashboardProducts, setDashCurrentPage } = productsSlice.actions;
 export default productsSlice.reducer

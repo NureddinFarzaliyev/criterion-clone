@@ -5,11 +5,15 @@ import InputGroup from '../dashBlogs/InputGroup'
 import spinner from '../../../../assets/images/spinner.svg'
 import { errorToast, successToast } from '../../../../utils/toast'
 import supabase from '../../../../tools/supabase'
+import useProducts from '../../../../hooks/useProducts'
+import { useSelector } from 'react-redux'
 
 const DashAddProduct = () => {
     const formRef = useRef(null)
     const [isOpen, setIsOpen] = useState(false)
     const [isLoading, setIsLoading] = useState(false)
+    const { getProducts } = useProducts()
+    const { dashCurrentPage } = useSelector(state => state.products)
 
     const handleAdd = async (e) => {
         e.preventDefault()
@@ -34,6 +38,7 @@ const DashAddProduct = () => {
 
         setIsOpen(false)
         successToast('Product added successfully!')
+        getProducts(dashCurrentPage, true)
     }
 
     return (
