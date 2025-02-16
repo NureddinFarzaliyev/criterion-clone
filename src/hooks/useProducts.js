@@ -3,7 +3,6 @@ import { useSelector, useDispatch } from "react-redux"
 import { setProducts, setDashboardProducts, setError, setLoading, setTotalPages, setIsPagination, setDashCurrentPage } from "../features/products/products"
 import supabase from "../tools/supabase"
 import { useSearchParams } from "react-router-dom"
-import { successToast } from "../utils/toast"
 
 const useProducts = () => {
     const dispatch = useDispatch()
@@ -15,12 +14,11 @@ const useProducts = () => {
 
     const getProducts = useCallback(async (page, isDashboard) => {
         dispatch(setLoading(true))
+
+        const supabaseQuery = supabase.from('products').select('*').range((page - 1) * 20, page * 20 - 1)
+        if(isDashboard) supabaseQuery.order('id', {ascending: false})
         
-        const {data, error} = await supabase
-            .from('products')
-            .select('*')
-            .range((page - 1) * 20, page * 20 - 1)
-            .order('id', {ascending: false})
+        const {data, error} = await supabaseQuery
 
         const {count, countError} = await supabase
             .from('products')
