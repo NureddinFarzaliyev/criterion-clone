@@ -41,7 +41,8 @@ const EditProduct = ({product}) => {
                             <InputGroup defaultValue={product.price} name={"price"} />
                             <InputGroup defaultValue={product.cover_large} name={"cover_large"} />
                             <InputGroup defaultValue={product.cover_small} name={"cover_small"} />
-                            <div className='flex justify-end items-center gap-4'> 
+                            <InputGroup defaultValue={product.description} name={"description"} />
+                            <div className='flex justify-start items-center gap-4'> 
                                 <button disabled={localLoading} className='h-min disabled:opacity-50 py-3 px-7 font-display cursor-pointer transition duration-500 bg-light-gray hover:bg-light-gray/50' onClick={(e) => { e.preventDefault(); setIsOpen(false) }}>CANCEL</button>
                                 <button disabled={localLoading} className='h-min disabled:opacity-50 py-3 px-7 font-display cursor-pointer transition duration-500 bg-gold hover:bg-gold/70'
                                     onClick={(e) => { handleEdit(e) }}>

@@ -1,5 +1,3 @@
-import { errorToast } from "./toast";
-
 export const fetchMovieDetails = async (movieName) => {
     const searchUrl = `https://api.themoviedb.org/3/search/movie?query=${movieName}&include_adult=false&language=en-US&page=1`;
     
@@ -28,6 +26,6 @@ export const fetchMovieDetails = async (movieName) => {
         }
 
     } catch (err) {
-        errorToast(err.message);
-}
+        console.log(err);
+    }
 }

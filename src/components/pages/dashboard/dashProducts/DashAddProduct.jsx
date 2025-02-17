@@ -63,7 +63,8 @@ const DashAddProduct = () => {
                             <InputGroup name={"price"} />
                             <InputGroup name={"cover_large"} />
                             <InputGroup name={"cover_small"} />
-                            <div className='flex justify-end items-center gap-4'> 
+                            <InputGroup name={"description"} />
+                            <div className='flex justify-start items-center gap-4'> 
                                 <button disabled={isLoading} className='h-min disabled:opacity-50 py-3 px-7 font-display cursor-pointer transition duration-500 bg-light-gray hover:bg-light-gray/50' onClick={(e) => { e.preventDefault(); setIsOpen(false) }}>CANCEL</button>
                                 <button disabled={isLoading} className='h-min disabled:opacity-50 py-3 px-7 font-display cursor-pointer transition duration-500 bg-gold hover:bg-gold/70'
                                     onClick={(e) => { handleAdd(e) }}>
