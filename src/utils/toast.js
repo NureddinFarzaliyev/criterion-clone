@@ -14,6 +14,7 @@ export const successToast = (message) => {
         position: "bottom-right",
         theme: "dark",
         transition: Slide,
+        className: "text-xl font-bold"
     });
 }
 
