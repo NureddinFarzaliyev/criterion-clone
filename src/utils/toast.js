@@ -4,7 +4,7 @@ import { Slide, toast } from "react-toastify";
 export const errorToast = (message) => {
     toast.error(message, {
         position: "bottom-right",
-        theme: "colored",
+        theme: "dark",
         transition: Slide,
     });
 }
@@ -12,7 +12,7 @@ export const errorToast = (message) => {
 export const successToast = (message) => {
     toast.success(message, {
         position: "bottom-right",
-        theme: "colored",
+        theme: "dark",
         transition: Slide,
     });
 }
@@ -20,7 +20,7 @@ export const successToast = (message) => {
 export const infoToast = (message) => {
     toast.info(message, {
         position: "bottom-right",
-        theme: "colored",
+        theme: "dark",
         transition: Slide,
     });
 }

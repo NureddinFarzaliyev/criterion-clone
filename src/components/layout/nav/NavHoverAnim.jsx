@@ -1,10 +1,6 @@
-import { motion } from "motion/react"
-
 const NavHoverAnim = ({children}) => {
   return (
-    <motion.div whileHover={{color: `var(--color-gold)`}}>
-        {children}
-    </motion.div>
+    <div className={`hidden md:block dark:text-white text-gray hover:text-gold transition duration-500`}>{children}</div>
   )
 }
 
