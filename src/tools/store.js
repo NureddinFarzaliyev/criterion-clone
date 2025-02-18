@@ -5,6 +5,7 @@ import highlightedProductsReducer from "../features/products/highlightedProducts
 import productsReducer from '../features/products/products.js'
 import authReducer from '../features/auth/auth.js'
 import dashboardReducer from '../features/dashboard/dashboard.js'
+import langReducer from '../features/lang/lang.js'
 
 export const store = configureStore({
     reducer: {
@@ -14,5 +15,6 @@ export const store = configureStore({
         products: productsReducer,
         auth: authReducer,
         dashboard: dashboardReducer,
+        lang: langReducer
     },
 })

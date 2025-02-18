@@ -4,6 +4,7 @@ import WhiteBtn from '../../ui/WhiteBtn'
 import { Link } from 'react-router-dom'
 import { errorToast } from '../../../utils/toast'
 import useHighlightedProducts from '../../../hooks/useHighlightedProducts'
+import StaticLang from '../../lang/StaticLang'
 
 const HighlightedProducts = () => {
     const {highlightedProducts, getHighlightedProducts, isLoading, error} = useHighlightedProducts()
@@ -18,8 +19,8 @@ const HighlightedProducts = () => {
 
   return (
     <section className='h-dvh snap-start relative home-section bg-light dark:bg-gray flex flex-col items-center justify-center gap-5'>
-        <h1 className='font-text font-bold text-3xl md:text-5xl dark:text-white text-center px-10'>Highlighted Movies</h1>
-        <p className='dark:text-white font-text mb-2 md:mb-5 2xl:mb-20 text-sm md:text-lg text-center px-10'>The most influential and classical movies chosen by professional critics</p>
+        <h1 className='font-text font-bold text-3xl md:text-5xl dark:text-white text-center px-10'><StaticLang en={"Highlighted Movies"} az={"Tövsiyə Edilən Filmlər"} /></h1>
+        <p className='dark:text-white font-text mb-2 md:mb-5 2xl:mb-20 text-sm md:text-lg text-center px-10'><StaticLang en={"The most influential and classical movies chosen by professional critics"} az={"Professional tənqidçilər tərəfindən seçilmiş ən təsirli klassik filmlər."} /></p>
         <div className='hidden 2xl:flex gap-4'>
             {highlightedProducts?.map((movie, i) => (
                 <Link to={`/movie/${movie.id}`} key={i}>
@@ -34,7 +35,7 @@ const HighlightedProducts = () => {
                                 <p className='w-[300px] md:text-xl'>{movie.director}</p>
                                 <p className='w-[300px] md:text-lg'>{movie.year} - {movie.country}</p>
                             </div>
-                            <WhiteBtn textContent={"Learn More"} />
+                            <WhiteBtn textContent={<StaticLang en="Learn more" az="Detallı Bax" />} />
                         </div>
                     </motion.div>
                 </Link>
@@ -49,7 +50,7 @@ const HighlightedProducts = () => {
         </div>
         <div className='mt-5 2xl:mt-20'>
             <Link to='/shop'>
-                <WhiteBtn textContent={"View All Movies"} />
+                <WhiteBtn textContent={<StaticLang en={"View All Movies"} az={"Bütün Filmlərə Bax"} />} />
             </Link>
         </div>
     </section>    

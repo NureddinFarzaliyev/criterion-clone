@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom'
 import WhiteBtn from '../../ui/WhiteBtn'
+import StaticLang from '../../lang/StaticLang'
 
 const HomeBlog = ({id, title, author, cover}) => {
 
@@ -9,7 +10,7 @@ const HomeBlog = ({id, title, author, cover}) => {
         <div className='absolute flex flex-col justify-center items-center w-dvw inset-0 text-white font-text text-center bg-black/30 gap-8'>
             <h2 className='text-5xl lg:text-8xl w-[85%] lg:w-[70%]'>{title}</h2>
             <p className='italic text-lg font-bold'>{author}</p>
-            <WhiteBtn textContent={"Read More"} />
+            <WhiteBtn textContent={<StaticLang az={"Detallı Oxu"} en={"Read More"} />} />
         </div>
         <img className='h-dvh w-dvw object-cover' src={cover} alt={title} />
     </section>

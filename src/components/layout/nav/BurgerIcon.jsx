@@ -3,6 +3,7 @@ import SidePanel from '../../ui/SidePanel'
 import { AnimatePresence } from 'motion/react'
 import { NavLink } from 'react-router-dom'
 import { motion } from 'motion/react'
+import LangBtn from '../../lang/LangBtn'
 
 const BurgerIcon = () => {
   const [isOpen, setIsOpen] = useState(false)
@@ -29,6 +30,7 @@ const BurgerIcon = () => {
       <AnimatePresence>
       {isOpen && (
         <SidePanel onClose={() => {setIsOpen(false)}} >
+          <LangBtn />
           <ul className='text-white'>
             {Object.keys(navLinks).map((text, i) => (
               <NavLink to={navLinks[text]} key={i}>

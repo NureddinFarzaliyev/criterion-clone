@@ -8,6 +8,6 @@
 > This project is for **educational purposes only** and is **not intended for commercial use**. No copyright claims are made for any materials used in this project.
 
 ### Tech Stack
-![Tailwindcss, Javascript, React, Redux, Supabase](https://skillicons.dev/icons?i=tailwindcss,javascript,react,redux,supabase)
+![Tailwindcss, Javascript, React, Redux, Supabase, Postgresql](https://skillicons.dev/icons?i=tailwindcss,javascript,react,redux,supabase,postgresql)
 
 ### Features
