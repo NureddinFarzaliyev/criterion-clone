@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import SidePanel from '../../ui/SidePanel'
 import { AnimatePresence } from 'motion/react'
 import SearchBar from '../../pages/shop/SearchBar';
+import StaticLang from '../../lang/StaticLang';
 
 const SearchIcon = () => {
   const [isOpen, setIsOpen] = useState(false)
@@ -11,7 +12,7 @@ const SearchIcon = () => {
     <AnimatePresence>
       { isOpen && <SidePanel onClose={() => {setIsOpen(false)}}> 
         <div className='text-white text-sm font-display font-bold'>
-          <h1 className=''>SEARCH</h1>
+          <h1 className=''><StaticLang az="AXTAR" en="SEARCH" /></h1>
           <SearchBar bgStyle={`bg-black/20 dark:bg-white/5`} />
         </div>
       </SidePanel>}

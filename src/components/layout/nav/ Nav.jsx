@@ -6,6 +6,7 @@ import ProfileIcon from './ProfileIcon'
 import BurgerIcon from './BurgerIcon'
 import NavHoverAnim from './NavHoverAnim'
 import DarkLightSwitch from './DarkLightSwitch'
+import StaticLang from '../../lang/StaticLang'
 
 const  Nav = () => {
   const location = window.location.pathname
@@ -17,8 +18,8 @@ const  Nav = () => {
           <Logo width={58} height={58} />
         </Link>
         <div className='flex gap-5 items-center font-text text-xl'>
-            <Link to={'/shop'}><NavHoverAnim>Shop the Collection</NavHoverAnim></Link>
-            <Link to={'/blog'}><NavHoverAnim>Check out The Blog</NavHoverAnim></Link>
+            <Link to={'/shop'}><NavHoverAnim><StaticLang en="Shop the Collection" az="Alış-veriş Edin" /></NavHoverAnim></Link>
+            <Link to={'/blog'}><NavHoverAnim><StaticLang en="Check out The Blog" az="Bloqa Baxın" /></NavHoverAnim></Link>
             <DarkLightSwitch />
             <SearchIcon />
             <Link to={'/cart'}><CartIcon /></Link>

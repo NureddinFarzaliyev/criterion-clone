@@ -5,6 +5,7 @@ import WhiteBtn from '../../ui/WhiteBtn'
 import { Link } from 'react-router-dom'
 import PurchaseDetails from './PurchaseDetails'
 import supabase from '../../../tools/supabase'
+import StaticLang from '../../lang/StaticLang'
 
 const Cart = () => {
     const {cartProducts, fetchCart, isCartLoading, removeFromCart, decrementCart, localLoading, incrementCart, getTotal, clearCart} = useCart()
@@ -59,10 +60,10 @@ const Cart = () => {
             </div>
             ) : (
             <div className='flex flex-col gap-3 items-center justify-center'>
-                <h1 className='font-text text-3xl'>Your cart is empty</h1>
-                <p className='font-text opacity-70'>Start by adding items from the shop.</p>
+                <h1 className='font-text text-3xl'><StaticLang en="Your cart is empty" az="Səbətiniz boşdur" /></h1>
+                <p className='font-text opacity-70'><StaticLang en="Start by adding items from the shop." az="Mağazadan məhsullar əlavə etməklə başlayın." /></p>
                 <Link to='/shop' className='mt-10'>
-                    <WhiteBtn textContent={"Explore the Shop"} />
+                    <WhiteBtn textContent={<StaticLang en="Explore the Shop" az="Mağazanı Kəşf Edin" />} />
                 </Link>
             </div>
             )}

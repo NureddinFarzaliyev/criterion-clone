@@ -7,16 +7,17 @@ import Logo from '../../ui/Logo'
 import Spotlight from './Spotlight'
 import WhiteBtn from '../../ui/WhiteBtn'
 import { Link } from 'react-router-dom'
+import StaticLang from '../../lang/StaticLang'
 
 const Blog = () => {
-    const {isLoading, error, getBlogs, blogs, highlightedBlogs, getHighlightedBlogs} = useBlog()
+    const { isLoading, error, getBlogs, blogs, highlightedBlogs, getHighlightedBlogs } = useBlog()
 
     useEffect(() => {
         getHighlightedBlogs()
     }, [getHighlightedBlogs])
 
-     useEffect(() => {
-        if(error) errorToast(error)
+    useEffect(() => {
+        if (error) errorToast(error)
     }, [error])
 
     useEffect(() => {
@@ -32,17 +33,20 @@ const Blog = () => {
             <LoadingPage isLoading={isLoading}>
                 <section className='px-4 lg:px-20 xl:px-44'>
                     <div className='mb-28'>
-                        <h1 className='mt-5 text-3xl md:text-7xl font-text text-center'>Current</h1>
-                        <p className='text-sm md:text-lg font-text text-center mt-2 opacity-70 mx-4'>An online magazine covering film culture past and present</p>
+                        <h1 className='mt-5 text-3xl md:text-7xl font-text text-center'><StaticLang en="Current" az="Jurnal" /></h1>
+                        <p className='text-sm md:text-lg font-text text-center mt-2 opacity-70 mx-4'><StaticLang en="An online magazine covering film culture past and present" az="Film mədəniyyətinin keçmişini və indisini əhatə edən onlayn jurnal" /></p>
                     </div>
 
                     <div className='flex flex-col lg:flex-row lg:gap-5'>
                         <Spotlight highlightedBlogs={highlightedBlogs} />
                         <div className='flex flex-col items-center justify-around gap-6 lg:w-1/2 px-4 lg:px-20 py-20 lg:py-0'>
                             <Logo height={100} />
-                            <p className='lg:text-lg font-text text-center md:w-1/2 lg:w-[80%]'>Current is an online magazine covering the past and the present of the film culture. We publish essays regarding to important, influential and unforgettable cinema pieces. Visit our shop to buy movies & collections.</p>
+                            <p className='lg:text-lg font-text text-center md:w-1/2 lg:w-[80%]'>
+                                <StaticLang en="Current is an online magazine covering the past and the present of the film culture. We publish essays regarding to important, influential and unforgettable cinema pieces. Visit our shop to buy movies & collections."
+                                az="Bu, film mədəniyyətinin keçmişini və indisini əhatə edən onlayn jurnaldır. Biz əhəmiyyətli, təsirli və unudulmaz sinema əsərlərin ilə bağlı esselər nəşr edirik. Filmləri və kolleksiyaları almaq üçün mağazamıza baş çəkin." />
+                            </p>
                             <Link to={'/shop'}>
-                                <WhiteBtn textContent='Visit the Shop' />
+                                <WhiteBtn textContent={<StaticLang en="Visit the Shop" az="Mağazaya Keç" />} />
                             </Link>
                         </div>
                     </div>
