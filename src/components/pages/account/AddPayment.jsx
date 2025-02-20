@@ -8,6 +8,7 @@ import spinner from '../../../assets/images/spinner.svg'
 import { FaCreditCard } from 'react-icons/fa6'
 import { IoWallet } from "react-icons/io5";
 import { FiGift } from "react-icons/fi";
+import StaticLang from '../../lang/StaticLang.jsx'
 
 const AddPayment = ({onAdd}) => {
   
@@ -58,19 +59,19 @@ const AddPayment = ({onAdd}) => {
   return (
     <>
       <button onClick={() => {setIsOpen(true)}} className='dark:bg-white/5 bg-gray text-white font-display p-5 text-md mt-4 shadow-lg w-full flex items-center justify-center gap-3 opacity-60 hover:opacity-100 transition duration-500 cursor-pointer'>
-        <FaPlus /> ADD A NEW METHOD
+        <FaPlus /> <StaticLang en="ADD NEW METHOD" az="YENİ ÜSUL ƏLAVƏ ET" />      
       </button>
 
       <Dialog transition open={isOpen} onClose={close} className="fixed inset-0 z-50 flex w-screen items-center justify-center bg-black/30 p-4 transition duration-300 ease-out data-[closed]:opacity-0">
               <DialogBackdrop className="fixed inset-0 bg-black/50" />
               <div className="fixed inset-0 flex w-screen items-center justify-center p-4">
                 <DialogPanel className="max-w-lg space-y-4 border bg-light p-10">
-                  <DialogTitle className="text-md font-bold font-display opacity-80">ADD NEW PAYMENT METHOD</DialogTitle>
+                  <DialogTitle className="text-md font-bold font-display opacity-80"><StaticLang en="ADD NEW PAYMENT METHOD" az="YENİ ÖDƏNİŞ ÜSULU ƏLAVƏ EDİN" /></DialogTitle>
       
                   <div className="my-10 flex flex-col gap-3 w-60 sm:w-96 font-text accent-gold relative">
                      <Listbox value={payment.method} onChange={handleSelectChange}>
                       <ListboxButton className='p-3 text-xl text-white shadow-lg cursor-pointer bg-gray hover:bg-gray/90 transition duration-500'>
-                        {payment.method !== '' ? payment.method.toUpperCase()[0] + payment.method.slice(1) : "Choose a payment method"}
+                        {payment.method !== '' ? payment.method.toUpperCase()[0] + payment.method.slice(1) : <StaticLang en="Choose a Payment Method" az="Ödəniş Üsulu Seçin" />}
                       </ListboxButton>
                       <ListboxOptions anchor="bottom" transition
                         className="origin-top transition duration-200 ease-out data-[closed]:scale-95 data-[closed]:opacity-0 w-60 sm:w-96 font-display">
@@ -100,9 +101,9 @@ const AddPayment = ({onAdd}) => {
                   </div>
       
                   <div className="flex gap-4 justify-end font-display">
-                    <button disabled={adding} className='bg-gray/70 hover:bg-gray/90 text-white transition duration-500 p-3 px-5 cursor-pointer' onClick={close}>CANCEL</button>
+                    <button disabled={adding} className='bg-gray/70 hover:bg-gray/90 text-white transition duration-500 p-3 px-5 cursor-pointer' onClick={close}><StaticLang en="CANCEL" az="LƏĞV ET" /></button>
                     <button disabled={adding} onClick={addMethod} className='bg-gold p-3 cursor-pointer text-white px-7 not-disabled:hover:bg-white not-disabled:hover:text-gray shadow-lg transition border-2 border-gold duration-700 not-disabled:hover:scale-110' >
-                      {adding ? <img className='h-7' src={spinner} alt="loading" /> : "ADD"}
+                      {adding ? <img className='h-7' src={spinner} alt="loading" /> : <StaticLang en="ADD" az="ƏLAVƏ ET" />}
                     </button>
                   </div>
                 </DialogPanel>

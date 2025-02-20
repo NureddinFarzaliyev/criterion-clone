@@ -8,6 +8,7 @@ import { FaCheck } from "react-icons/fa";
 import { useSelector } from 'react-redux';
 import supabase from '../../../tools/supabase';
 import AddPayment from '../account/AddPayment';
+import StaticLang from '../../lang/StaticLang.jsx'
 
 const ChoosePayment = ({chosenMethod, setChosenMethod}) => {
   // const [chosenMethod, setChosenMethod] = useState({})
@@ -46,7 +47,7 @@ const ChoosePayment = ({chosenMethod, setChosenMethod}) => {
                   <p className='text-md'>{chosenMethod.method.toUpperCase()[0] + chosenMethod.method.slice(1)} <span className='opacity-50 text-sm ml-1'>{chosenMethod.method_id}</span></p>
                 </div>
               ) : (
-                <p>Choose Payment Method</p>
+                <p><StaticLang en="Choose Payment Method" az="Ödəniş Üsulu Seçin" /></p>
               )}
             </DisclosureButton>
 

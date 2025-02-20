@@ -6,6 +6,7 @@ import { AnimatePresence, motion } from 'motion/react'
 import { FaCheck } from "react-icons/fa";
 import { IoLocationSharp } from "react-icons/io5";
 import AddAddress from '../account/AddAddress'
+import StaticLang from '../../lang/StaticLang.jsx'
 
 const ChooseAddress = ({chosenAddress, setChosenAddress}) => {
     const [addresses, setAddresses] = useState([])
@@ -37,7 +38,7 @@ const ChooseAddress = ({chosenAddress, setChosenAddress}) => {
                 <div className='text-2xl'><IoLocationSharp /></div>
                 <p className='text-left'>{chosenAddress.address}</p>
                 </div>
-            ) : <p>Choose Shipping Address</p>}
+            ) : <p><StaticLang en="Choose Shipping Address" az="Çatdırılma Ünvanı Seçin" /></p>}
             </DisclosureButton>
 
             <AnimatePresence>{open && (
