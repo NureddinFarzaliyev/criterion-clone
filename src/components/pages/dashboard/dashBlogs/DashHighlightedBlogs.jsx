@@ -7,11 +7,12 @@ import { useDispatch } from 'react-redux';
 import supabase from '../../../../tools/supabase';
 import { errorToast } from '../../../../utils/toast';
 import { FiPlus } from "react-icons/fi";
+import StaticLang from '../../../lang/StaticLang';
 
 import SearchDialog from '../../../ui/SearchDialog';
 
 const DashHighlightedBlogs = () => {
-    const { highlightedBlogs, getHighlightedBlogs, isLoading } = useBlog()
+    const { highlightedBlogs, getHighlightedBlogs } = useBlog()
     const dispatch = useDispatch()
     const [isOpen, setIsOpen] = useState(false)
 
@@ -40,12 +41,12 @@ const DashHighlightedBlogs = () => {
         dispatch(addHighlightedBlog(blog))
         setIsOpen(false)
 
-        const {error} = await supabase
+        const { error } = await supabase
             .from('blog')
-            .update({isHighlighted: true})
+            .update({ isHighlighted: true })
             .eq('id', blog.id)
-        
-        if(error) {
+
+        if (error) {
             removeHighlightedBlog(blog)
             return errorToast('Failed to add blog. Please try again.')
         }
@@ -55,7 +56,7 @@ const DashHighlightedBlogs = () => {
 
     return (
         <div>
-            <p className='font-display uppercase mb-5 mt-20 opacity-60'>highlighted blogs</p>
+            <p className='font-display uppercase mb-5 mt-20 opacity-60'><StaticLang en="highlighted posts" az="Önə Çıxan Postlar" /></p>
             <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5'>
                 {highlightedBlogs.map((blog, index) => (
                     <div className='relative shadow-lg' key={index}>
@@ -72,7 +73,7 @@ const DashHighlightedBlogs = () => {
                 ))}
                 {highlightedBlogs && highlightedBlogs.length < 3 && (
                     Array(3 - highlightedBlogs?.length).fill().map((_, index) => (
-                        <div key={index} onClick={() => {setIsOpen(true)}} className='h-48 shadow-lg border-2 dark:border-white border-gray opacity-15 hover:opacity-40 transition duration-300 flex items-center justify-center text-6xl cursor-pointer'>
+                        <div key={index} onClick={() => { setIsOpen(true) }} className='h-48 shadow-lg border-2 dark:border-white border-gray opacity-15 hover:opacity-40 transition duration-300 flex items-center justify-center text-6xl cursor-pointer'>
                             <FiPlus />
                         </div>
                     ))

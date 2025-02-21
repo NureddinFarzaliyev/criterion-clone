@@ -6,6 +6,7 @@ import LoadingPage from '../../../ui/LoadingPage'
 import { CgExternal } from 'react-icons/cg'
 import EditBlog from './EditBlog'
 import DeleteBlog from './DeleteBlog'
+import StaticLang from '../../../lang/StaticLang'
 
 const ManagePosts = () => {
   const { blogs, getBlogs, isLoading } = useBlog()
@@ -18,7 +19,7 @@ const ManagePosts = () => {
 
   return (
     <div className='relative min-h-[30vh]'>
-      <p className='font-display uppercase mb-5 mt-20 opacity-60'>manage posts</p>
+      <p className='font-display uppercase mb-5 mt-20 opacity-60'><StaticLang en="manage posts" az="postları idarə et" /></p>
 
       <LoadingPage isLoading={isLoading}>
         <table className="min-w-full font-display">

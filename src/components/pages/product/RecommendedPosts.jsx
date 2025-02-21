@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import supabase from '../../../tools/supabase'
 import { Link } from 'react-router-dom'
+import StaticLang from '../../lang/StaticLang'
 
 const RecommendedPosts = () => {
     const [recommendedPosts, setRecommendedPosts] = useState([])
@@ -9,20 +10,20 @@ const RecommendedPosts = () => {
         const fetchRecommendedPosts = async () => {
             // NOTE: This requires creating a Postgres function which returns random items from the Supabase database
             const { data, error } = await supabase.rpc('random_posts', { limit_count: 2 });
-    
+
             if (error) {
                 errorToast(error.message)
             } else {
                 setRecommendedPosts(data)
             }
-    
+
         }
         fetchRecommendedPosts()
     }, [])
 
     return (
         <div className='w-[90%] md:w-[80%] xl:w-[70%] mx-auto mt-20'>
-            <h1 className='text-xl md:text-4xl font-text mb-10'>Read the Current</h1>
+            <h1 className='text-xl md:text-4xl font-text mb-10'><StaticLang en="Read the Current" az="Jurnalı Oxuyun" /></h1>
             <div className='grid lg:grid-cols-2 gap-5'>
                 {recommendedPosts.length > 0 && recommendedPosts.map(((blog, index) => (
                     <Link key={index} to={`/blog/${blog.id}`} className='dark:bg-white bg-gray dark:text-gray text-white shadow-xl'>

@@ -1,5 +1,5 @@
 import { Tab, TabGroup, TabList, TabPanel, TabPanels } from '@headlessui/react'
-import React, { Fragment, useEffect } from 'react'
+import { Fragment, useEffect } from 'react'
 import GeneralSection from '../../ui/GeneralSection'
 import LoadingPage from '../../ui/LoadingPage'
 import useAuth from '../../../hooks/useAuth'
@@ -15,6 +15,7 @@ import Home from './dashHome/Home'
 import Orders from './dashOrders/Orders'
 import Blogs from './dashBlogs/DashBlogs'
 import Products from './dashProducts/DashProducts'
+import StaticLang from '../../lang/StaticLang'
 
 const Dashboard = () => {
     const { getUser, isLoading } = useAuth()
@@ -32,17 +33,17 @@ const Dashboard = () => {
     }, [])
 
     const tabs = [
-        <><GoHomeFill /><h1>Home</h1></>,
-        <><FaPenNib /><h1>Blog</h1></>,
-        <><FaBoxOpen /><h1>Products</h1></>,
-        <><MdOutlineAttachMoney /><h1>Orders</h1></>,
+        <><GoHomeFill /><h1><StaticLang en="Home" az="Ev" /></h1></>,
+        <><FaPenNib /><h1> <StaticLang en="Blog" az="Bloq" /> </h1></>,
+        <><FaBoxOpen /><h1> <StaticLang en="Products" az="Məhsullar" /> </h1></>,
+        <><MdOutlineAttachMoney /><h1> <StaticLang en="Orders" az="Sifarişlər" /> </h1></>,
     ]
 
     const pages = [
-        <Home />,
-        <Blogs />,
-        <Products />,
-        <Orders />,
+        <Home key={0} />,
+        <Blogs key={1} />,
+        <Products key={2} />,
+        <Orders key={3} />,
     ]
 
     return (
@@ -50,12 +51,12 @@ const Dashboard = () => {
             <LoadingPage isLoading={isLoading}>
                 <div className='w-[90%] md:w-[70%] mx-auto'>
 
-                    <h1 className='mt-10 font-display text-3xl opacity-50 mb-5'>DASHBOARD</h1>
+                    <h1 className='mt-10 font-display text-3xl opacity-50 mb-5'> <StaticLang en="DASHBOARD" az="PANEL" /> </h1>
 
                     <TabGroup defaultIndex={0}>
                         <TabList className={`flex gap-4 flex-wrap`}>
                             {tabs.map((tab, index) => (
-                                <Tab as={Fragment}>
+                                <Tab as={Fragment} key={index}>
                                     {({ hover, selected }) => (
                                         <button key={index}
                                             className={` py-3 px-6 w-40 transition duration-300 outline-none text-white flex items-center gap-3 rounded-full text-sm font-display uppercase cursor-pointer

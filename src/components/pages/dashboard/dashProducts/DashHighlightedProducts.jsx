@@ -1,8 +1,9 @@
-import React, { useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
 import useHighlightedProducts from '../../../../hooks/useHighlightedProducts'
 import { RxCross1 } from 'react-icons/rx'
 import { FiPlus } from 'react-icons/fi'
 import SearchDialog from '../../../ui/SearchDialog'
+import StaticLang from '../../../lang/StaticLang'
 
 const DashHighlightedProducts = () => {
   const { getHighlightedProducts, highlightedProducts, removeHighlightedProduct, addHighlightedProduct } = useHighlightedProducts()
@@ -17,7 +18,7 @@ const DashHighlightedProducts = () => {
 
   return (
     <div>
-      <p className='font-display uppercase mb-5 mt-20 opacity-60'>highlighted products</p>
+      <p className='font-display uppercase mb-5 mt-20 opacity-60'><StaticLang en="highlighted products" az="Önə çıxan məhsullar" /></p>
       <div className='grid grid-cols-2 sm:grid-cols-4 gap-3 xl:gap-10'>
 
         {highlightedProducts.map((product, index) => (
@@ -35,7 +36,7 @@ const DashHighlightedProducts = () => {
           ))
         )}
 
-        <SearchDialog fromTable={'products'} fromField={'title'} isOpen={isOpen} setIsOpen={setIsOpen} handleChosenElement={(product) => {addHighlightedProduct(product)}} />
+        <SearchDialog fromTable={'products'} fromField={'title'} isOpen={isOpen} setIsOpen={setIsOpen} handleChosenElement={(product) => { addHighlightedProduct(product) }} />
 
       </div>
     </div>

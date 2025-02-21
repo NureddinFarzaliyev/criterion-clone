@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
 import LoadingPage from '../../../ui/LoadingPage'
 import { LuRefreshCcw } from 'react-icons/lu'
 import { TD, TH, TR } from '../../../ui/Table'
@@ -11,6 +11,7 @@ import EditProduct from './EditProduct'
 import SearchDialog from '../../../ui/SearchDialog'
 import { FaMagnifyingGlass } from 'react-icons/fa6'
 import { RxCross1 } from "react-icons/rx";
+import StaticLang from '../../../lang/StaticLang'
 
 const DashManageProducts = () => {
     const { isLoading, getProducts, changeDashboardCurrentPage } = useProducts()
@@ -38,7 +39,7 @@ const DashManageProducts = () => {
 
     return (
         <div className='relative min-h-[40vh]'>
-            <p className='font-display uppercase mb-5 mt-20 opacity-60'>manage products</p>
+            <p className='font-display uppercase mb-5 mt-20 opacity-60'><StaticLang en="manage products" az="Məhsulları idarə et" /></p>
             <LoadingPage isLoading={isLoading}>
                 <table className="min-w-full font-display">
                     <thead className='relative'>

@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import { useEffect } from 'react'
 import GeneralSection from '../../ui/GeneralSection'
 import { useParams } from 'react-router-dom'
 import useProducts from '../../../hooks/useProducts'
@@ -10,14 +10,14 @@ import RecommendedProducts from './RecommendedProducts'
 import RecommendedPosts from './RecommendedPosts'
 
 const Product = () => {
-    const {id} = useParams()
-    const {getSingleProduct, isProductLoading, productError, singleProduct} = useProducts()
+    const { id } = useParams()
+    const { getSingleProduct, isProductLoading, productError, singleProduct } = useProducts()
 
-    useEffect(() => {window.scrollTo(0,0)}, [window.location.pathname])
+    useEffect(() => { window.scrollTo(0, 0) }, [window.location.pathname])
 
     useEffect(() => {
         getSingleProduct(id)
-        if(productError) errorToast(productError)
+        if (productError) errorToast(productError)
     }, [getSingleProduct, id])
 
     return (

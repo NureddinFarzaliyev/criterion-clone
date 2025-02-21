@@ -8,26 +8,27 @@ import { errorToast, successToast } from '../../../../utils/toast'
 import useBlog from '../../../../hooks/useBlog'
 import ParagraphTextArea from './ParagraphTextArea'
 import { createParagraphsArray } from '../../../../utils/createParagraphsArray'
+import StaticLang from '../../../lang/StaticLang'
 
 const CreateBlog = () => {
     const [isOpen, setIsOpen] = useState(false)
     const [paragraphs, setParagraphs] = useState([])
     const [isLoading, setIsLoading] = useState(false)
     const form = useRef(null)
-    const {getBlogs} = useBlog()
+    const { getBlogs } = useBlog()
 
     const handlePublish = async (e) => {
         e.preventDefault()
         const formData = Object.fromEntries(new FormData(form.current))
         formData.paragraphs = createParagraphsArray(formData)
 
-        if(!formData.title || !formData.author || !formData.cover || formData.paragraphs.length === 0) {
+        if (!formData.title || !formData.author || !formData.cover || formData.paragraphs.length === 0) {
             return errorToast('Please fill all fields')
         }
 
         setIsLoading(true)
 
-        const {error} = await supabase
+        const { error } = await supabase
             .from('blog')
             .insert([formData])
 
@@ -35,18 +36,18 @@ const CreateBlog = () => {
         setIsOpen(false)
         setParagraphs([])
 
-        if (error){
+        if (error) {
             console.log(error)
             return errorToast('Failed to publish blog post')
         }
-        
+
         getBlogs()
         successToast('Blog post published successfully!')
     }
 
     return (
         <div>
-            <p className='font-display uppercase mb-5 mt-20 opacity-60'>publish new blog post</p>
+            <p className='font-display uppercase mb-5 mt-20 opacity-60'> <StaticLang en="publish new blog post" az="Yeni post paylaş" /> </p>
             <div onClick={() => { setIsOpen(true) }} className='h-48 shadow-lg border-2 dark:border-white border-gray opacity-15 hover:opacity-40 transition duration-300 flex items-center justify-center text-6xl cursor-pointer'>
                 <FiPlus />
             </div>
@@ -68,11 +69,11 @@ const CreateBlog = () => {
                             <div onClick={() => { setParagraphs([...paragraphs, '']) }} className='h-12 mt-4 shadow-lg border-2 border-white opacity-15 hover:opacity-40 transition duration-300 flex items-center justify-center text-3xl cursor-pointer'>
                                 <FiPlus />
                             </div>
-                            
+
                             <div className='flex gap-3 justify-end mt-10'>
-                                <button disabled={isLoading} className='disabled:opacity-50 py-3 px-7 font-display cursor-pointer transition duration-500 bg-light-gray hover:bg-light-gray/50' onClick={(e) => {e.preventDefault(); setIsOpen(false)}}>CANCEL</button>
-                                <button disabled={isLoading} className='disabled:opacity-50 py-3 px-7 font-display cursor-pointer transition duration-500 bg-gold hover:bg-gold/70' 
-                                onClick={(e) => {handlePublish(e)}}>
+                                <button disabled={isLoading} className='disabled:opacity-50 py-3 px-7 font-display cursor-pointer transition duration-500 bg-light-gray hover:bg-light-gray/50' onClick={(e) => { e.preventDefault(); setIsOpen(false) }}>CANCEL</button>
+                                <button disabled={isLoading} className='disabled:opacity-50 py-3 px-7 font-display cursor-pointer transition duration-500 bg-gold hover:bg-gold/70'
+                                    onClick={(e) => { handlePublish(e) }}>
                                     {isLoading ? <img src={spinner} alt="spinner" className='h-6' /> : 'PUBLISH'}
                                 </button>
                             </div>
