@@ -1,4 +1,3 @@
-import React from 'react'
 import faqImg from '../../../assets/images/faq.jpg'
 import FaqAccordion from './FaqAccordion'
 
@@ -21,17 +20,17 @@ const Faq = () => {
 
   return (
     <section className='min-h-dvh bg-light dark:bg-gray text-gray dark:text-white pb-20'>
-        <div className='top-0 h-64 md:h-96 overflow-hidden bg-center bg-cover mt-24 dark:mt-0' style={{backgroundImage: `url(${faqImg})`}}>
-            <div className='text-5xl text-white md:text-8xl font-text h-full w-full flex items-center justify-center bg-black/30'>
-                FAQ
-            </div>
+      <div className='top-0 h-64 md:h-96 overflow-hidden bg-center bg-cover mt-24 dark:mt-0' style={{ backgroundImage: `url(${faqImg})` }}>
+        <div className='text-5xl text-white md:text-8xl font-text h-full w-full flex items-center justify-center bg-black/30'>
+          FAQ
         </div>
+      </div>
 
-        <div className='flex items-center flex-col mt-20 px-5'>
-            {Object.keys(faqQuestions).map((question, index) => (
-                <FaqAccordion key={index} title={question} text={faqQuestions[question]} />
-            ))}
-        </div>
+      <div className='flex items-center flex-col mt-20 px-5'>
+        {Object.keys(faqQuestions).map((question, index) => (
+          <FaqAccordion key={index} title={question} text={faqQuestions[question]} />
+        ))}
+      </div>
     </section>
   )
 }
