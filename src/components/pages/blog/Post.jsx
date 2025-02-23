@@ -8,21 +8,22 @@ import RecommendedPosts from '../product/RecommendedPosts'
 import RecommendedProducts from '../product/RecommendedProducts'
 
 const Post = () => {
-  const {id} = useParams()
+  const { id } = useParams()
   const [post, setPost] = useState(null)
 
   useEffect(() => {
+    console.log("Useffect called")
     window.scrollTo(0, 0)
-  }, [])
+  }, [id])
 
   useEffect(() => {
     const getPost = async () => {
-      const { data , error } = await supabase
+      const { data, error } = await supabase
         .from('blog')
         .select("*")
         .eq('id', id)
 
-      if(error){
+      if (error) {
         errorToast(error)
         return
       }
@@ -45,8 +46,8 @@ const Post = () => {
               {post.paragraphs.map((paragraph, index) => (
                 <p key={index} className='text-md md:text-lg mb-5 font-text sm:px-10 xl:px-0 xl:w-1/2'>{index === 0 ? (
                   <>
-                  <BigLetter>{paragraph[0]}</BigLetter>
-                  {paragraph.slice(1)}
+                    <BigLetter>{paragraph[0]}</BigLetter>
+                    {paragraph.slice(1)}
                   </>
                 ) : paragraph}</p>
               ))}

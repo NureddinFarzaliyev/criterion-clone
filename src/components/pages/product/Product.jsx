@@ -13,7 +13,7 @@ const Product = () => {
     const { id } = useParams()
     const { getSingleProduct, isProductLoading, productError, singleProduct } = useProducts()
 
-    useEffect(() => { window.scrollTo(0, 0) }, [window.location.pathname])
+    useEffect(() => { window.scrollTo(0, 0) }, [id])
 
     useEffect(() => {
         getSingleProduct(id)
