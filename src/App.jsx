@@ -4,9 +4,10 @@ import ToastConfig from './components/ui/ToastConfig'
 import HideFromLoggedin from './components/protected/HideFromLoggedin'
 import HideFromNotLogged from './components/protected/HideFromNotLogged'
 
-import Home from './components/pages/home/Home'
 import Nav from './components/layout/nav/ Nav'
 import Footer from './components/layout/footer/Footer'
+
+import Home from './components/pages/home/Home'
 import About from './components/pages/about/About'
 import Contact from './components/pages/contact/Contact'
 import Faq from './components/pages/faq/Faq'
@@ -40,15 +41,14 @@ const App = () => {
         <Route path="/blog/:id" element={<Post />} />
         <Route path="/shop" element={<Shop />} />
         <Route path="/shop/:id" element={<Product />} />
-        <Route path="/register" element={<HideFromLoggedin children={<Register />} />} />
-        <Route path="/login" element={<HideFromLoggedin children={<Login />} />} />
-        <Route path="/account" element={<HideFromNotLogged children={<Account />}/>} />
-        <Route path="/wishlist" element={<HideFromNotLogged children={<Wishlist />}/>} />
-        <Route path="/verify" element={<HideFromLoggedin children={<PleaseVerify />} />} />
+        <Route path="/register" element={<HideFromLoggedin><Register /></HideFromLoggedin>} />
+        <Route path="/login" element={<HideFromLoggedin><Login /></HideFromLoggedin>} />
+        <Route path="/account" element={<HideFromNotLogged><Account /></HideFromNotLogged>} />
+        <Route path="/wishlist" element={<HideFromNotLogged><Wishlist /></HideFromNotLogged>} />
+        <Route path="/verify" element={<HideFromLoggedin><PleaseVerify /></HideFromLoggedin>} />
         <Route path="/search" element={<Search />} />
-        <Route path="/cart" element={<HideFromNotLogged children={<Cart />} />} />
+        <Route path="/cart" element={<HideFromNotLogged><Cart /></HideFromNotLogged>} />
         <Route path="/dashboard" element={<Dashboard />} />
-
         <Route path="*" element={<NotFound />} />
       </Routes>
       {location.pathname !== '/' && <Footer />}

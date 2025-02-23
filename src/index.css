@@ -92,3 +92,13 @@ select {
 html {
     scroll-behavior: smooth;
 }
+
+.three-colors-image ~ p {
+    opacity: 0;
+    transform: translateY(100px);
+}
+
+.three-colors-image:hover ~ p {
+    opacity: 1;
+    transform: translateY(0);
+}
