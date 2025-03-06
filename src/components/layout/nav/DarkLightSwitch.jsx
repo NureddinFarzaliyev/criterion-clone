@@ -3,10 +3,17 @@ import { IoSunnyOutline, IoMoonOutline } from "react-icons/io5";
 
 const DarkLightSwitch = () => {
 
-    const [darkMode, setDarkMode] = useState(localStorage.getItem('darkMode') === 'true' ? true : false)
+    const [darkMode, setDarkMode] = useState(() => {
+        const localData = localStorage.getItem('darkMode')
+        if (localData === null) {
+            return true
+        } else {
+            return localData === 'true' ? true : false
+        }
+    })
 
     useEffect(() => {
-        if (localStorage.getItem('darkMode') === 'true') {
+        if (localStorage.getItem('darkMode') === 'true' || localStorage.getItem('darkMode') === null) {
             document.querySelector('html').classList.add('dark')
         }
     }, [])

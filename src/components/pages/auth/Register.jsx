@@ -6,13 +6,14 @@ import { IoInformationCircleOutline } from "react-icons/io5";
 import FormInfoAnim from "../../ui/FormInfoAnim"
 import FormInput from "../../ui/FormInput"
 import spinner from '../../../assets/images/spinner.svg'
+import ScrollToTop from "../../ui/ScrollToTop";
 
 const Register = () => {
     const navigate = useNavigate()
-    const {isLoading, error, register} = useAuth()
+    const { isLoading, error, register } = useAuth()
 
     useEffect(() => {
-        if(error) errorToast(error)
+        if (error) errorToast(error)
     }, [error])
 
     const [user, setUser] = useState({
@@ -23,10 +24,10 @@ const Register = () => {
 
     const handleRegister = async (e) => {
         e.preventDefault()
-        if(user.password !== user.repeat) return errorToast("Passwords do not match.")
+        if (user.password !== user.repeat) return errorToast("Passwords do not match.")
         const response = await register(user.email, user.password, "user")
 
-        if(response) {
+        if (response) {
             successToast("Registered successfully")
             navigate("/verify")
         }
@@ -34,7 +35,8 @@ const Register = () => {
 
     return (
         <div className="w-[90%] md:w-[80%] lg:w-1/2 mx-auto mt-10">
-            <form onSubmit={(e) => {handleRegister(e)}}>
+            <ScrollToTop />
+            <form onSubmit={(e) => { handleRegister(e) }}>
                 <h1 className="font-display font-bold text-3xl mb-14 lg:mt-20">CREATE ACCOUNT</h1>
                 <FormInfoAnim isVisible={error}>
                     <p className="my-4 text-center text-red-500 font-display font-bold">{error?.toUpperCase()}</p>
@@ -46,10 +48,10 @@ const Register = () => {
                 </FormInfoAnim>
                 <FormInput data={user} setData={setUser} name={"repeat"} placeholder={"Repeat Password"} type={"password"} />
                 <FormInfoAnim isVisible={user.password.length !== 0 && user.repeat.length !== 0 && user.password !== user.repeat}>
-                        <span className="font-display mt-2 text-sm ml-2 flex items-center gap-1"><IoInformationCircleOutline className="text-lg" /> Passwords do not match.</span>
+                    <span className="font-display mt-2 text-sm ml-2 flex items-center gap-1"><IoInformationCircleOutline className="text-lg" /> Passwords do not match.</span>
                 </FormInfoAnim>
-                <button className="mt-14 bg-gold h-14 font-bold font-display disabled:opacity-50 not-disabled:hover:bg-light-gray not-disabled:cursor-pointer duration-500 shadow-md w-full p-3 flex items-center justify-center" 
-                disabled={isLoading || user.password.length < 6 || user.repeat.length < 6 || user.password !== user.repeat || user.email.length === 0}>
+                <button className="mt-14 bg-gold h-14 font-bold font-display disabled:opacity-50 not-disabled:hover:bg-light-gray not-disabled:cursor-pointer duration-500 shadow-md w-full p-3 flex items-center justify-center"
+                    disabled={isLoading || user.password.length < 6 || user.repeat.length < 6 || user.password !== user.repeat || user.email.length === 0}>
                     {isLoading ? <img src={spinner} className="h-10" /> : "REGISTER"}
                 </button>
                 <Link to="/login"><p className="text-sm opacity-70 dark:text-white text-gray text-center mt-4 underline hover:opacity-100 transition duration-500">Already have an account? Login.</p></Link>

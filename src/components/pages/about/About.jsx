@@ -2,10 +2,12 @@ import GeneralSection from '../../ui/GeneralSection'
 import aboutImg from '../../../assets/images/about.jpg'
 import BigLetter from '../../ui/BigLetter'
 import StaticLang from '../../lang/StaticLang'
+import ScrollToTop from '../../ui/ScrollToTop'
 
 const About = () => {
   return (
     <GeneralSection>
+      <ScrollToTop />
       <div className='flex items-center justify-center mt-10 flex-col'>
         <div className='text-center font-display'>
           <p className='opacity-20 text-xs md:text-sm'>THE CRITERION COLLECTION</p>

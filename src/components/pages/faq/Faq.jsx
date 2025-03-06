@@ -1,6 +1,7 @@
 import faqImg from '../../../assets/images/faq.jpg'
 import StaticLang from '../../lang/StaticLang'
 import FaqAccordion from './FaqAccordion'
+import ScrollToTop from '../../ui/ScrollToTop'
 
 const Faq = () => {
 
@@ -36,19 +37,21 @@ const Faq = () => {
 
 
   return (
-    <section className='min-h-dvh bg-light dark:bg-gray text-gray dark:text-white pb-20'>
-      <div className='top-0 h-64 md:h-96 overflow-hidden bg-center bg-cover mt-24 dark:mt-0' style={{ backgroundImage: `url(${faqImg})` }}>
-        <div className='text-5xl text-white md:text-8xl font-text h-full w-full flex items-center justify-center bg-black/30'>
-          FAQ
+    <ScrollToTop>
+      <section className='min-h-dvh bg-light dark:bg-gray text-gray dark:text-white pb-20'>
+        <div className='top-0 h-64 md:h-96 overflow-hidden bg-center bg-cover mt-24 dark:mt-0' style={{ backgroundImage: `url(${faqImg})` }}>
+          <div className='text-5xl text-white md:text-8xl font-text h-full w-full flex items-center justify-center bg-black/30'>
+            FAQ
+          </div>
         </div>
-      </div>
 
-      <div className='flex items-center flex-col mt-20 px-5'>
-        {Object.keys(faqQuestions).map((question, index) => (
-          <FaqAccordion key={index} title={<StaticLang en={question} az={Object.keys(faqQuestionsAz)[index]} />} text={<StaticLang en={faqQuestions[question]} az={faqQuestionsAz[Object.keys(faqQuestionsAz)[index]]} />} />
-        ))}
-      </div>
-    </section>
+        <div className='flex items-center flex-col mt-20 px-5'>
+          {Object.keys(faqQuestions).map((question, index) => (
+            <FaqAccordion key={index} title={<StaticLang en={question} az={Object.keys(faqQuestionsAz)[index]} />} text={<StaticLang en={faqQuestions[question]} az={faqQuestionsAz[Object.keys(faqQuestionsAz)[index]]} />} />
+          ))}
+        </div>
+      </section>
+    </ScrollToTop>
   )
 }
 
