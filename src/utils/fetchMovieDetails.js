@@ -1,6 +1,7 @@
+// utility function to fetch detailed movie information from the TMDB API
 export const fetchMovieDetails = async (movieName) => {
     const searchUrl = `https://api.themoviedb.org/3/search/movie?query=${movieName}&include_adult=false&language=en-US&page=1`;
-    
+
     const detailsUrl = (id) => {
         return `https://api.themoviedb.org/3/movie/${id}`
     }
@@ -17,11 +18,11 @@ export const fetchMovieDetails = async (movieName) => {
         const searchResponse = await fetch(searchUrl, options);
         const searchResult = await searchResponse.json();
 
-        if(searchResult.results[0]){
+        if (searchResult.results[0]) {
             const detailsResponse = await fetch(detailsUrl(searchResult.results[0].id), options);
             const detailsResult = await detailsResponse.json();
             return detailsResult;
-        }else{
+        } else {
             throw new Error("Failed to fetch detailed movie information.");
         }
 

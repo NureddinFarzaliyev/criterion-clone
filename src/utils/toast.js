@@ -1,6 +1,6 @@
 import { Slide, toast } from "react-toastify";
 
-
+// toasts
 export const errorToast = (message) => {
     toast.error(message, {
         position: "bottom-right",
