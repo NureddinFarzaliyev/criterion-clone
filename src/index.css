@@ -22,12 +22,12 @@
     --color-gray: #252525;
     --color-light-gray: #4A4A4A;
     --color-white: #ffffff;
-    --color-light: #F6F6F6;
+    --color-light: #E2E1DF;
     --color-gold: #B4841E;
-    --color-footer-black: rgba(0,0,0,.9);
+    --color-footer-black: rgba(0, 0, 0, .9);
 
     /* Home Seperator Animation */
-    --home-seperator-color: rgba(44,44,44, .2);
+    --home-seperator-color: rgba(44, 44, 44, .2);
     --home-seperator-width: 10%;
 }
 
@@ -41,19 +41,19 @@
     color: var(--color-gold);
 }
 
-.cc40-img:hover ~ .cc40-span-left {
+.cc40-img:hover~.cc40-span-left {
     opacity: 1;
     scale: 1;
     left: 17.5%;
 }
 
-.cc40-img:hover ~ .cc40-span-right {
+.cc40-img:hover~.cc40-span-right {
     opacity: 1;
     scale: 1;
     right: 17.5%;
 }
 
-.cc40-img:hover ~  .cc40-span-bottom {
+.cc40-img:hover~.cc40-span-bottom {
     bottom: 30px;
     opacity: 1;
 }
@@ -62,11 +62,13 @@
     animation: spin 2.5s linear infinite;
 }
 
-div.swiper-button-next, div.swiper-button-prev {
+div.swiper-button-next,
+div.swiper-button-prev {
     color: var(--color-white);
     transition: all .4s;
     opacity: 0.2;
-    &:hover{
+
+    &:hover {
         color: var(--color-gold);
         opacity: 1;
     }
@@ -76,7 +78,7 @@ div.swiper-button-next, div.swiper-button-prev {
     margin: 0 !important;
 }
 
-.blog-card:hover{
+.blog-card:hover {
     & img {
         scale: 1.15;
     }
@@ -93,12 +95,12 @@ html {
     scroll-behavior: smooth;
 }
 
-.three-colors-image ~ p {
+.three-colors-image~p {
     opacity: 0;
     transform: translateY(100px);
 }
 
-.three-colors-image:hover ~ p {
+.three-colors-image:hover~p {
     opacity: 1;
     transform: translateY(0);
 }
