@@ -20,6 +20,8 @@ const Product = () => {
         if (productError) errorToast(productError)
     }, [getSingleProduct, id])
 
+    console.log(singleProduct)
+
     return (
         <GeneralSection>
             <LoadingPage isLoading={isProductLoading}>

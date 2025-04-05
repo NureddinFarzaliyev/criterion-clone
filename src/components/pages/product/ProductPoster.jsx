@@ -29,7 +29,7 @@ const ProductPoster = ({ cover_large, title, director }) => {
           showBack ? (
             <div>
               <img src={cover_large} alt={title} style={{ transform: 'scaleX(-1)' }} />
-              <div className='h-full w-full absolute top-0 bg-light-gray/80 blur-lg'></div>
+              <div className='h-full w-full absolute top-0 bg-gray/90 blur-lg'></div>
               <div style={{ transform: 'scaleX(-1)' }} className='h-full w-full absolute top-0 flex flex-col items-center justify-evenly p-12'>
                 <Logo height={100} color={'#fff'} />
                 <div className='text-center'>
