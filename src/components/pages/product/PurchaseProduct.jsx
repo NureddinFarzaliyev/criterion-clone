@@ -7,6 +7,7 @@ import useCart from '../../../hooks/useCart';
 import { useSelector } from 'react-redux';
 import { infoToast } from '../../../utils/toast';
 import StaticLang from '../../lang/StaticLang';
+import ProductPoster from './ProductPoster';
 
 const PurchaseProduct = ({ singleProduct }) => {
     const cartBtnControls = useAnimationControls()
@@ -43,7 +44,7 @@ const PurchaseProduct = ({ singleProduct }) => {
 
     return (
         <div className='lg:w-1/2 flex flex-col items-center'>
-            <img src={singleProduct.cover_large} alt={singleProduct.title} className='shadow-xl w-[80%]' />
+            <ProductPoster cover_large={singleProduct?.cover_large} title={singleProduct?.title} director={singleProduct?.director} />
             <div className='mt-10 w-[80%]'>
                 <motion.button whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }} transition={{ duration: 0.5 }}
                     onClick={() => handleCart(singleProduct.id)}
